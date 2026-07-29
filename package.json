@@ -1,0 +1,84 @@
+{
+  "name": "@celtian/flag-resizer",
+  "version": "0.1.0",
+  "description": "Generate typed, optimized PNG and WebP country flag assets from Twemoji SVGs.",
+  "keywords": [
+    "flags",
+    "cli",
+    "sharp",
+    "png",
+    "webp",
+    "typescript"
+  ],
+  "author": {
+    "name": "Dominik Hladík",
+    "email": "dominik.hladik@seznam.cz",
+    "url": "https://github.com/Celtian"
+  },
+  "license": "MIT AND CC-BY-4.0",
+  "homepage": "https://github.com/Celtian/flag-resizer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Celtian/flag-resizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Celtian/flag-resizer/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "npm@11.16.0",
+  "bin": {
+    "flag-resizer": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "flags",
+    "ATTRIBUTION.txt",
+    "LICENSE",
+    "LICENSE-GRAPHICS",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:types": "vitest run --typecheck.only",
+    "test:coverage": "vitest run --coverage",
+    "package:check": "node scripts/check-package.mjs",
+    "check": "npm run lint && npm run format:check && npm run typecheck && npm run test && npm run test:types && npm run build && npm run package:check",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "c12": "^3.3.4",
+    "sharp": "^0.35.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.10.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.0",
+    "prettier": "^3.9.6",
+    "tsdown": "^0.20.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  }
+}

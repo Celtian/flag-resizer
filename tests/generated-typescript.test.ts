@@ -1,0 +1,38 @@
+import { describe, expect, test } from 'vitest';
+
+import { createTypeScriptManifest } from '../src/generated-typescript.js';
+import type { ResolvedProfileConfig } from '../src/types.js';
+
+describe('generated TypeScript manifest', () => {
+  test('is deterministic and contains filtered typed metadata', () => {
+    const profile: ResolvedProfileConfig = {
+      name: 'default',
+      filter: { type: 'whitelist', values: ['cz', 'gb'] },
+      countries: ['cz', 'gb'],
+      sizes: [
+        [20, 15],
+        [40, 30],
+      ],
+      quality: 100,
+      formats: ['png', 'webp'],
+      output: {
+        png: { dir: '/tmp/png', publicPath: '/flags/png' },
+        webp: { dir: '/tmp/webp', publicPath: 'https://cdn.test/webp' },
+        ts: '/tmp/flags.ts',
+      },
+    };
+
+    const first = createTypeScriptManifest(profile);
+    const second = createTypeScriptManifest(profile);
+
+    expect(first).toBe(second);
+    expect(first).toContain('cz: "Czechia"');
+    expect(first).toContain('gb: "United Kingdom"');
+    expect(first).toContain('"20x15": { width: 20, height: 15 }');
+    expect(first).toContain('export type CountryCode = keyof typeof FLAGS');
+    expect(first).toContain('export type FlagSize = (typeof FLAG_SIZES)[number]');
+    expect(first).toContain('png: "/flags/png"');
+    expect(first).toContain('webp: "https://cdn.test/webp"');
+    expect(first).toContain('return `${basePath}/${size}/${code}.${format}`');
+  });
+});
