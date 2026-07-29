@@ -1,14 +1,21 @@
-import { execFileSync } from 'node:child_process';
+const result = Bun.spawnSync(['bun', 'pm', 'pack', '--dry-run', '--ignore-scripts']);
 
-const output = execFileSync(
-  process.platform === 'win32' ? 'npm.cmd' : 'npm',
-  ['pack', '--dry-run', '--json', '--ignore-scripts'],
-  { encoding: 'utf8' },
+if (!result.success) {
+  throw new Error(result.stderr.toString() || 'bun pm pack failed.');
+}
+
+const output = result.stdout.toString();
+const files = new Set(
+  output
+    .split(/\r?\n/u)
+    .map((line) => /^packed\s+\S+\s+(.+)$/u.exec(line)?.[1])
+    .filter((file): file is string => file !== undefined),
 );
-const [pack] = JSON.parse(output);
-if (!pack?.files) throw new Error('npm pack did not return a file list.');
 
-const files = new Set(pack.files.map((entry) => entry.path));
+if (files.size === 0) {
+  throw new Error('bun pm pack did not return a file list.');
+}
+
 const required = [
   'ATTRIBUTION.txt',
   'LICENSE',

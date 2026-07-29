@@ -11,6 +11,12 @@ manifest, from the bundled Twemoji SVG artwork.
 ## Installation
 
 ```sh
+bun add --dev @celtian/flag-resizer
+```
+
+With npm:
+
+```sh
 npm install --save-dev @celtian/flag-resizer
 ```
 
@@ -67,21 +73,21 @@ configuration variants.
 Generate every profile:
 
 ```sh
-npx flag-resizer
+bunx flag-resizer
 ```
 
 Generate selected profiles:
 
 ```sh
-npx flag-resizer default marketing
+bunx flag-resizer default marketing
 ```
 
 Use another config or preview changes:
 
 ```sh
-npx flag-resizer --config ./config/flags.config.ts --concurrency 4
-npx flag-resizer --dry-run
-npx flag-resizer --dry-run --verbose
+bunx flag-resizer --config ./config/flags.config.ts --concurrency 4
+bunx flag-resizer --dry-run
+bunx flag-resizer --dry-run --verbose
 ```
 
 Interactive output stays compact and uses color when the terminal supports it:

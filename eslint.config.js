@@ -3,7 +3,7 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['coverage/**', 'dist/**', 'node_modules/**', '.flag-resizer/**'],
+    ignores: ['coverage/**', 'dist/**', 'node_modules/**', 'tmp/**', '.flag-resizer/**'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,

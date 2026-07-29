@@ -17,8 +17,14 @@
     "declarationMap": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": ["node", "bun"]
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "vitest.config.ts", "tsdown.config.ts"],
+  "include": [
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "scripts/**/*.ts",
+    "vitest.config.ts",
+    "tsdown.config.ts"
+  ],
   "exclude": ["dist", "coverage", "node_modules"]
 }
