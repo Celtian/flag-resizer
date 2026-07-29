@@ -13,8 +13,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(334);
-    expect(Object.keys(FLAGS)).toHaveLength(334);
+    expect(COUNTRY_CODES).toHaveLength(369);
+    expect(Object.keys(FLAGS)).toHaveLength(369);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -45,8 +45,14 @@ describe('flag data', () => {
     expect(FLAGS.cp).toBe('Clipperton Island');
     expect(FLAGS.cq).toBe('Sark');
     expect(FLAGS.cz).toBe('Czechia');
+    expect(FLAGS['de-be']).toBe('Berlin');
+    expect(FLAGS['de-by']).toBe('Bavaria');
+    expect(FLAGS['de-th']).toBe('Thuringia');
     expect(FLAGS.dg).toBe('Diego Garcia');
     expect(FLAGS.ea).toBe('Ceuta & Melilla');
+    expect(FLAGS['es-an']).toBe('Andalusia');
+    expect(FLAGS['es-cn']).toBe('Canary Islands');
+    expect(FLAGS['es-vc']).toBe('Valencian Community');
     expect(FLAGS.gb).toBe('United Kingdom');
     expect(FLAGS['gb-eng']).toBe('England');
     expect(FLAGS['gb-nir']).toBe('Northern Ireland');

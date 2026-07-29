@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 1000 600" preserveAspectRatio="none">
+      <title>Rautenflagge von Bayern</title>
+        <desc>Die Rautenflagge des Bundeslands Bayern</desc>
+        <rect width="1000" height="600" fill="white" />
+        <path d="M 963.5625,0 L 742.375,0 1000,570 1000,600 792.375,600 521.1875,0 300,0 571.1875,600 350,600 150,157.5 0,119.25 0,315 128.8125,600 350,600 0,510.75 0,315 1000,570 1000,374.25 150,157.5 78.8125,0 300,0 1000,178.5 1000,80.625 z"
+              fill="#0098d4" />
+    </svg>
+  </g>
+</svg>

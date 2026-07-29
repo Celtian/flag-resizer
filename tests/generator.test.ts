@@ -30,7 +30,10 @@ describe('generate', () => {
     const cwd = await temporaryDirectory();
     const testConfig: FlagResizerConfig = {
       default: profile({
-        filter: { type: 'whitelist', values: ['au-act', 'ca-on', 'cz', 'gb-nir', 'us-ca'] },
+        filter: {
+          type: 'whitelist',
+          values: ['au-act', 'ca-on', 'cz', 'de-by', 'es-cn', 'gb-nir', 'us-ca'],
+        },
         sizes: [
           [20, 15],
           [40, 30],
@@ -47,15 +50,15 @@ describe('generate', () => {
     const first = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(first.profiles[0]).toMatchObject({
       name: 'default',
-      countries: 5,
-      images: 20,
+      countries: 7,
+      images: 28,
       removed: 0,
     });
 
     for (const format of ['png', 'webp'] as const) {
       for (const size of ['20x15', '40x30'] as const) {
         const [width, height] = size.split('x').map(Number);
-        for (const code of ['au-act', 'ca-on', 'cz', 'gb-nir', 'us-ca']) {
+        for (const code of ['au-act', 'ca-on', 'cz', 'de-by', 'es-cn', 'gb-nir', 'us-ca']) {
           const metadata = await sharp(
             path.join(cwd, 'assets', format, size, `${code}.${format}`),
           ).metadata();
@@ -78,6 +81,8 @@ describe('generate', () => {
     expect(generated).toContain('export const FLAGS');
     expect(generated).toContain('"au-act": "Australian Capital Territory"');
     expect(generated).toContain('"ca-on": "Ontario"');
+    expect(generated).toContain('"de-by": "Bavaria"');
+    expect(generated).toContain('"es-cn": "Canary Islands"');
     expect(generated).toContain('"gb-nir": "Northern Ireland"');
     expect(generated).toContain('"us-ca": "California"');
     expect(generated).toContain('getFlagPath');
@@ -86,13 +91,13 @@ describe('generate', () => {
     const manifest = JSON.parse(
       await readFile(path.join(cwd, '.flag-resizer/manifest.json'), 'utf8'),
     ) as { profiles: { default: { files: unknown[] } } };
-    expect(manifest.profiles.default.files).toHaveLength(25);
+    expect(manifest.profiles.default.files).toHaveLength(33);
 
     const second = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(second.profiles[0]).toMatchObject({
       created: 0,
       updated: 0,
-      unchanged: 25,
+      unchanged: 33,
       removed: 0,
     });
   });

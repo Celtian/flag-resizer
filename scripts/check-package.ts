@@ -62,8 +62,12 @@ const required = [
   'flags/cp.svg',
   'flags/cq.svg',
   'flags/cz.svg',
+  'flags/de-bb.svg',
+  'flags/de-th.svg',
   'flags/dg.svg',
   'flags/ea.svg',
+  'flags/es-an.svg',
+  'flags/es-vc.svg',
   'flags/gb.svg',
   'flags/gb-eng.svg',
   'flags/gb-nir.svg',
@@ -82,12 +86,12 @@ for (const file of required) {
 }
 
 const flagCount = [...files].filter((file) =>
-  /^flags\/(?:[a-z]{2}|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
+  /^flags\/(?:[a-z]{2}|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|de-(?:bb|be|bw|by|hb|he|hh|mv|ni|nw|rp|sh|sl|sn|st|th)|es-(?:an|ar|as|cb|ce|cl|cm|cn|ct|ex|ga|ib|mc|md|ml|nc|pv|ri|vc)|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
     file,
   ),
 ).length;
-if (flagCount !== 334) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 334.`);
+if (flagCount !== 369) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 369.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);
