@@ -30,7 +30,7 @@ describe('generate', () => {
     const cwd = await temporaryDirectory();
     const testConfig: FlagResizerConfig = {
       default: profile({
-        filter: { type: 'whitelist', values: ['cz', 'gb-nir'] },
+        filter: { type: 'whitelist', values: ['cz', 'gb-nir', 'us-ca'] },
         sizes: [
           [20, 15],
           [40, 30],
@@ -47,15 +47,15 @@ describe('generate', () => {
     const first = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(first.profiles[0]).toMatchObject({
       name: 'default',
-      countries: 2,
-      images: 8,
+      countries: 3,
+      images: 12,
       removed: 0,
     });
 
     for (const format of ['png', 'webp'] as const) {
       for (const size of ['20x15', '40x30'] as const) {
         const [width, height] = size.split('x').map(Number);
-        for (const code of ['cz', 'gb-nir']) {
+        for (const code of ['cz', 'gb-nir', 'us-ca']) {
           const metadata = await sharp(
             path.join(cwd, 'assets', format, size, `${code}.${format}`),
           ).metadata();
@@ -66,28 +66,31 @@ describe('generate', () => {
       const attribution = readFile(path.join(cwd, 'assets', format, 'ATTRIBUTION.txt'), 'utf8');
       await expect(attribution).resolves.toContain('Twemoji');
       await expect(attribution).resolves.toContain('flag-icons');
+      await expect(attribution).resolves.toContain('flagcdn.com');
 
       const license = readFile(path.join(cwd, 'assets', format, 'LICENSE-GRAPHICS'), 'utf8');
       await expect(license).resolves.toContain('CC-BY-4.0');
       await expect(license).resolves.toContain('The MIT License');
+      await expect(license).resolves.toContain('public domain');
     }
 
     const generated = await readFile(path.join(cwd, 'generated/flags.ts'), 'utf8');
     expect(generated).toContain('export const FLAGS');
     expect(generated).toContain('"gb-nir": "Northern Ireland"');
+    expect(generated).toContain('"us-ca": "California"');
     expect(generated).toContain('getFlagPath');
     expect(generated).not.toContain('us:');
 
     const manifest = JSON.parse(
       await readFile(path.join(cwd, '.flag-resizer/manifest.json'), 'utf8'),
     ) as { profiles: { default: { files: unknown[] } } };
-    expect(manifest.profiles.default.files).toHaveLength(13);
+    expect(manifest.profiles.default.files).toHaveLength(17);
 
     const second = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(second.profiles[0]).toMatchObject({
       created: 0,
       updated: 0,
-      unchanged: 13,
+      unchanged: 17,
       removed: 0,
     });
   });

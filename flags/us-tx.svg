@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 900 600" preserveAspectRatio="none">
+      <path fill="#BF0D3E" d="M0 0h900v600H0z"/><path fill="#FFF" d="M0 0h900v300H0z"/><path fill="#00205B" d="M0 0h300v600H0z"/><g fill="#FFF" transform="translate(150 300)"><g id="b"><path id="a" d="M0-112.5V0h50" transform="rotate(18 0 -112.5)"/><use xlink:href="#a" transform="scale(-1 1)"/></g><use xlink:href="#b" transform="rotate(72)"/><use xlink:href="#b" transform="rotate(144)"/><use xlink:href="#b" transform="rotate(216)"/><use xlink:href="#b" transform="rotate(288)"/></g>
+    </svg>
+  </g>
+</svg>

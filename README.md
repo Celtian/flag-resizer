@@ -2,7 +2,7 @@
 
 # 🏁 Flag Resizer
 
-**Generate typed, optimized PNG and WebP country flag assets from bundled Twemoji SVGs.**
+**Generate typed, optimized PNG and WebP flag assets from bundled SVG artwork.**
 
 [![npm version](https://img.shields.io/npm/v/flag-resizer)](https://www.npmjs.com/package/flag-resizer)
 [![Test PR](https://github.com/Celtian/flag-resizer/actions/workflows/pull-request.yml/badge.svg)](https://github.com/Celtian/flag-resizer/actions/workflows/pull-request.yml)
@@ -12,15 +12,15 @@
 
 </div>
 
-`flag-resizer` converts its bundled country flag artwork into application-ready image sets.
-Configure one or more profiles, choose the countries, dimensions, and formats you need, and generate
+`flag-resizer` converts its bundled flag artwork into application-ready image sets.
+Configure one or more profiles, choose the regions, dimensions, and formats you need, and generate
 a deterministic TypeScript manifest alongside the assets.
 
 ## ✨ Why use it?
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled flags**              | Includes all 259 Twemoji regional flags and 4 UK subdivision flags.                            |
+| 🏳️ **Bundled flags**              | Includes 259 Twemoji regional flags, 4 UK subdivisions, and all 50 U.S. state flags.           |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
@@ -84,11 +84,17 @@ export default defineConfig({
 
 Filter values are lowercase flag or country codes, not language codes. For example, use `cz` for
 the Czech flag, `gb` for the British flag, and `gb-eng`, `gb-nir`, `gb-sct`, or `gb-wls` for the
-flags of England, Northern Ireland, Scotland, and Wales. Unknown codes fail validation.
+flags of England, Northern Ireland, Scotland, and Wales. U.S. states use FlagCDN-compatible codes
+such as `us-ca` for California and `us-ny` for New York. Unknown codes fail validation.
 
 The Northern Ireland asset is the historical Ulster Banner from
 [flag-icons](https://github.com/lipis/flag-icons). Northern Ireland has no current distinct official
 flag; the United Kingdom flag is its official flag.
+
+The 50 U.S. state assets come from [FlagCDN](https://flagcdn.com/), whose flag artwork is based on
+[Wikimedia Commons](https://commons.wikimedia.org/) vectors and identified as public domain in
+[Flagpedia's terms](https://flagpedia.net/terms). The source artwork is normalized to the same
+rounded 36×36 canvas as the bundled Twemoji flags.
 
 All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
 configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.
@@ -316,7 +322,7 @@ Copyright &copy; 2026 [Dominik Hladík](https://github.com/Celtian).
 
 The package code is licensed under the [MIT License](LICENSE).
 
-The bundled Twemoji graphics and the PNG/WebP derivatives produced from them are licensed under
-CC-BY-4.0. Generated asset roots include attribution and license notices. Keep the required
-attribution when redistributing the graphics. See [ATTRIBUTION.txt](ATTRIBUTION.txt) and
-[LICENSE-GRAPHICS](LICENSE-GRAPHICS).
+The bundled graphics use source-specific terms: Twemoji is licensed under CC-BY-4.0, the Northern
+Ireland asset is MIT-licensed, and the FlagCDN U.S. state artwork is public domain. Generated asset
+roots include attribution and license notices. Keep the required notices when redistributing the
+graphics. See [ATTRIBUTION.txt](ATTRIBUTION.txt) and [LICENSE-GRAPHICS](LICENSE-GRAPHICS).

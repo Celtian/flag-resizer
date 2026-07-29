@@ -12,8 +12,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(263);
-    expect(Object.keys(FLAGS)).toHaveLength(263);
+    expect(COUNTRY_CODES).toHaveLength(313);
+    expect(Object.keys(FLAGS)).toHaveLength(313);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -33,5 +33,8 @@ describe('flag data', () => {
     expect(FLAGS.ta).toBe('Tristan da Cunha');
     expect(FLAGS.eu).toBe('European Union');
     expect(FLAGS.un).toBe('United Nations');
+    expect(FLAGS['us-ak']).toBe('Alaska');
+    expect(FLAGS['us-ca']).toBe('California');
+    expect(FLAGS['us-wy']).toBe('Wyoming');
   });
 });

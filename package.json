@@ -2,7 +2,7 @@
   "name": "flag-resizer",
   "version": "0.0.0",
   "private": false,
-  "description": "Generate typed, optimized PNG and WebP country flag assets from Twemoji SVGs.",
+  "description": "Generate typed, optimized PNG and WebP flag assets from bundled SVG artwork.",
   "keywords": [
     "flags",
     "cli",

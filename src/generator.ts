@@ -100,7 +100,9 @@ function assertSafeManagedFile(entry: ManagedFile): void {
     (entry.kind === 'license' && portable === 'LICENSE-GRAPHICS') ||
     (entry.kind === 'typescript' && /^[^/]+\.ts$/u.test(portable)) ||
     (entry.kind === 'image' &&
-      /^[1-9]\d*x[1-9]\d*\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls))\.(?:png|webp)$/u.test(portable));
+      /^[1-9]\d*x[1-9]\d*\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.(?:png|webp)$/u.test(
+        portable,
+      ));
 
   if (!valid) {
     throw new FlagResizerError(

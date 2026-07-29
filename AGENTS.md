@@ -32,7 +32,7 @@ implementation details.
 - `src/types.ts`: shared public and internal types.
 - `tests/*.test.ts`: runtime behavior tests.
 - `tests/public-api.test-d.ts`: compile-time public API assertions.
-- `flags/*.svg`: bundled Twemoji source artwork.
+- `flags/*.svg`: bundled flag source artwork.
 - `scripts/check-package.ts`: published-package content assertions.
 
 ## Implementation conventions
@@ -59,13 +59,15 @@ implementation details.
 - Do not commit generated PNG or WebP files, `.flag-resizer` state, `dist`, or
   coverage output.
 - Treat `flags/*.svg` as source assets, not generated test output. The published
-  package must contain exactly the expected 263 SVG files: all 259 Twemoji
-  regional flags plus the `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
-  subdivision flags.
+  package must contain exactly the expected 313 SVG files: all 259 Twemoji
+  regional flags, the `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls` subdivision
+  flags, and all 50 FlagCDN-compatible U.S. state flags.
 - Changes to Twemoji artwork, `ATTRIBUTION.txt`, or `LICENSE-GRAPHICS` must
   preserve the CC-BY-4.0 license and required attribution.
 - The `gb-nir.svg` Ulster Banner comes from `flag-icons` under the MIT license;
   preserve its attribution and license notice.
+- The `us-*.svg` U.S. state flags come from FlagCDN's public-domain artwork;
+  preserve the source and public-domain notices.
 - Generated asset directories must receive the attribution and graphics-license
   files expected by the generator tests.
 

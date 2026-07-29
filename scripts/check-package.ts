@@ -67,6 +67,9 @@ const required = [
   'flags/gb-wls.svg',
   'flags/ic.svg',
   'flags/ta.svg',
+  'flags/us-ak.svg',
+  'flags/us-ca.svg',
+  'flags/us-wy.svg',
   'package.json',
 ];
 
@@ -75,10 +78,12 @@ for (const file of required) {
 }
 
 const flagCount = [...files].filter((file) =>
-  /^flags\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls))\.svg$/u.test(file),
+  /^flags\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
+    file,
+  ),
 ).length;
-if (flagCount !== 263) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 263.`);
+if (flagCount !== 313) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 313.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);
