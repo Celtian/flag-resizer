@@ -27,5 +27,8 @@ test('public API preserves literal configuration types', () => {
   expectTypeOf(config.default.formats[0]).toEqualTypeOf<'png'>();
   expectTypeOf(generate).returns.resolves.toEqualTypeOf<GenerationResult>();
   expectTypeOf<'cz'>().toExtend<CountryCode>();
+  expectTypeOf<'dg'>().toExtend<CountryCode>();
+  expectTypeOf<'gb-eng'>().toExtend<CountryCode>();
+  expectTypeOf<'gb-nir'>().toExtend<CountryCode>();
   expectTypeOf<'webp'>().toExtend<FlagFormat>();
 });

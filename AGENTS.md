@@ -59,9 +59,13 @@ implementation details.
 - Do not commit generated PNG or WebP files, `.flag-resizer` state, `dist`, or
   coverage output.
 - Treat `flags/*.svg` as source assets, not generated test output. The published
-  package must contain exactly the expected 252 two-letter SVG files.
+  package must contain exactly the expected 262 SVG files: all 258 Twemoji
+  regional flags plus the `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
+  subdivision flags.
 - Changes to Twemoji artwork, `ATTRIBUTION.txt`, or `LICENSE-GRAPHICS` must
   preserve the CC-BY-4.0 license and required attribution.
+- The `gb-nir.svg` Ulster Banner comes from `flag-icons` under the MIT license;
+  preserve its attribution and license notice.
 - Generated asset directories must receive the attribution and graphics-license
   files expected by the generator tests.
 

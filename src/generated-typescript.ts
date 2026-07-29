@@ -5,8 +5,14 @@ function quote(value: string): string {
   return JSON.stringify(value);
 }
 
+function propertyKey(value: string): string {
+  return /^[A-Za-z_$][\w$]*$/u.test(value) ? value : quote(value);
+}
+
 export function createTypeScriptManifest(profile: ResolvedProfileConfig): string {
-  const flags = profile.countries.map((code) => `  ${code}: ${quote(FLAGS[code])},`).join('\n');
+  const flags = profile.countries
+    .map((code) => `  ${propertyKey(code)}: ${quote(FLAGS[code])},`)
+    .join('\n');
   const sizes = profile.sizes.map(([width, height]) => `${width}x${height}`);
   const sizeValues = sizes.map((size) => `  ${quote(size)},`).join('\n');
   const dimensions = profile.sizes

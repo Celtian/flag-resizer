@@ -7,8 +7,8 @@ describe('generated TypeScript manifest', () => {
   test('is deterministic and contains filtered typed metadata', () => {
     const profile: ResolvedProfileConfig = {
       name: 'default',
-      filter: { type: 'whitelist', values: ['cz', 'gb'] },
-      countries: ['cz', 'gb'],
+      filter: { type: 'whitelist', values: ['cz', 'gb-eng'] },
+      countries: ['cz', 'gb-eng'],
       sizes: [
         [20, 15],
         [40, 30],
@@ -34,7 +34,7 @@ describe('generated TypeScript manifest', () => {
 `),
     ).toBe(true);
     expect(first).toContain('cz: "Czechia"');
-    expect(first).toContain('gb: "United Kingdom"');
+    expect(first).toContain('"gb-eng": "England"');
     expect(first).toContain('"20x15": { width: 20, height: 15 }');
     expect(first).toContain('export type CountryCode = keyof typeof FLAGS');
     expect(first).toContain('export type FlagSize = (typeof FLAG_SIZES)[number]');

@@ -30,6 +30,7 @@ describe('generate', () => {
     const cwd = await temporaryDirectory();
     const testConfig: FlagResizerConfig = {
       default: profile({
+        filter: { type: 'whitelist', values: ['cz', 'gb-nir'] },
         sizes: [
           [20, 15],
           [40, 30],
@@ -54,7 +55,7 @@ describe('generate', () => {
     for (const format of ['png', 'webp'] as const) {
       for (const size of ['20x15', '40x30'] as const) {
         const [width, height] = size.split('x').map(Number);
-        for (const code of ['cz', 'gb']) {
+        for (const code of ['cz', 'gb-nir']) {
           const metadata = await sharp(
             path.join(cwd, 'assets', format, size, `${code}.${format}`),
           ).metadata();
@@ -62,16 +63,18 @@ describe('generate', () => {
           expect(metadata.hasAlpha).toBe(true);
         }
       }
-      await expect(
-        readFile(path.join(cwd, 'assets', format, 'ATTRIBUTION.txt'), 'utf8'),
-      ).resolves.toContain('Twemoji');
-      await expect(
-        readFile(path.join(cwd, 'assets', format, 'LICENSE-GRAPHICS'), 'utf8'),
-      ).resolves.toContain('CC-BY-4.0');
+      const attribution = readFile(path.join(cwd, 'assets', format, 'ATTRIBUTION.txt'), 'utf8');
+      await expect(attribution).resolves.toContain('Twemoji');
+      await expect(attribution).resolves.toContain('flag-icons');
+
+      const license = readFile(path.join(cwd, 'assets', format, 'LICENSE-GRAPHICS'), 'utf8');
+      await expect(license).resolves.toContain('CC-BY-4.0');
+      await expect(license).resolves.toContain('The MIT License');
     }
 
     const generated = await readFile(path.join(cwd, 'generated/flags.ts'), 'utf8');
     expect(generated).toContain('export const FLAGS');
+    expect(generated).toContain('"gb-nir": "Northern Ireland"');
     expect(generated).toContain('getFlagPath');
     expect(generated).not.toContain('us:');
 

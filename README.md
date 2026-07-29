@@ -20,7 +20,7 @@ a deterministic TypeScript manifest alongside the assets.
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled country flags**      | Includes 252 two-letter country and territory flags from Twemoji.                              |
+| 🏳️ **Bundled flags**              | Includes all 258 Twemoji regional flags and 4 UK subdivision flags.                            |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
@@ -83,7 +83,12 @@ export default defineConfig({
 ```
 
 Filter values are lowercase flag or country codes, not language codes. For example, use `cz` for
-the Czech flag and `gb` for the British flag. Unknown codes fail validation.
+the Czech flag, `gb` for the British flag, and `gb-eng`, `gb-nir`, `gb-sct`, or `gb-wls` for the
+flags of England, Northern Ireland, Scotland, and Wales. Unknown codes fail validation.
+
+The Northern Ireland asset is the historical Ulster Banner from
+[flag-icons](https://github.com/lipis/flag-icons). Northern Ireland has no current distinct official
+flag; the United Kingdom flag is its official flag.
 
 All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
 configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.

@@ -54,8 +54,18 @@ const required = [
   'dist/cli.js',
   'dist/index.d.ts',
   'dist/index.js',
+  'flags/ac.svg',
+  'flags/cp.svg',
   'flags/cz.svg',
+  'flags/dg.svg',
+  'flags/ea.svg',
   'flags/gb.svg',
+  'flags/gb-eng.svg',
+  'flags/gb-nir.svg',
+  'flags/gb-sct.svg',
+  'flags/gb-wls.svg',
+  'flags/ic.svg',
+  'flags/ta.svg',
   'package.json',
 ];
 
@@ -63,9 +73,11 @@ for (const file of required) {
   if (!files.has(file)) throw new Error(`Published package is missing ${file}.`);
 }
 
-const flagCount = [...files].filter((file) => /^flags\/[a-z]{2}\.svg$/u.test(file)).length;
-if (flagCount !== 252) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 252.`);
+const flagCount = [...files].filter((file) =>
+  /^flags\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls))\.svg$/u.test(file),
+).length;
+if (flagCount !== 262) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 262.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);
