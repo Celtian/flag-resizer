@@ -21,6 +21,16 @@ if (!inputArgument || !outputArgument || process.argv.length !== 4) {
 
   const attributes = svg[1] ?? '';
   const content = (svg[2] ?? '').trim();
+  const namespaceAttributes = new Map();
+  for (const match of attributes.matchAll(/\bxmlns:([A-Za-z_][\w.-]*)\s*=\s*(["'])([^"']+)\2/gu)) {
+    const prefix = match[1];
+    const declaration = match[0];
+    if (prefix && declaration && prefix.toLowerCase() !== 'xlink') {
+      namespaceAttributes.set(prefix, declaration);
+    }
+  }
+  const additionalNamespaces =
+    namespaceAttributes.size === 0 ? '' : ` ${[...namespaceAttributes.values()].join(' ')}`;
   const viewBoxMatch = /\bviewBox\s*=\s*["']([^"']+)["']/iu.exec(attributes);
   let viewBox;
 
@@ -41,10 +51,16 @@ if (!inputArgument || !outputArgument || process.argv.length !== 4) {
 
   const indentedContent = content
     .split(/\r?\n/u)
-    .map((line) => `      ${line}`)
+    .map((line) => {
+      const trimmed = line.trimEnd();
+      if (trimmed === '') return '';
+
+      const indentation = /^[\t ]*/u.exec(trimmed)?.[0] ?? '';
+      return `      ${indentation.replace(/\t/gu, '  ')}${trimmed.slice(indentation.length)}`;
+    })
     .join('\n');
   const normalizedViewBox = viewBox.join(' ');
-  const output = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 36">
+  const output = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"${additionalNamespaces} viewBox="0 0 36 36">
   <defs>
     <clipPath id="flag-resizer-rounded-clip">
       <rect width="36" height="26" y="5" rx="4"/>

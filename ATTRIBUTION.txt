@@ -12,6 +12,11 @@ Copyright (c) 2013 Panayiotis Lipiridis
 Source: https://github.com/lipis/flag-icons
 License: MIT
 
+Canadian and Australian subdivision flag graphics (`ca-*`, `au-*`)
+Copyright (c) 2021 AJ McKenna
+Source: https://github.com/amckenna41/iso3166-flags
+License: MIT
+
 U.S. state flag graphics (`us-*`)
 Source: https://flagcdn.com/
 Original vector sources: https://commons.wikimedia.org/

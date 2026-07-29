@@ -20,7 +20,7 @@ a deterministic TypeScript manifest alongside the assets.
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled flags**              | Includes 259 Twemoji regional flags, 4 UK subdivisions, and all 50 U.S. state flags.           |
+| 🏳️ **Bundled flags**              | Includes 334 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
@@ -85,7 +85,9 @@ export default defineConfig({
 Filter values are lowercase flag or country codes, not language codes. For example, use `cz` for
 the Czech flag, `gb` for the British flag, and `gb-eng`, `gb-nir`, `gb-sct`, or `gb-wls` for the
 flags of England, Northern Ireland, Scotland, and Wales. U.S. states use FlagCDN-compatible codes
-such as `us-ca` for California and `us-ny` for New York. Unknown codes fail validation.
+such as `us-ca` for California and `us-ny` for New York. Canadian subdivisions use codes such as
+`ca-on` for Ontario, while Australian subdivisions use codes such as `au-nsw` for New South Wales.
+Unknown codes fail validation.
 
 The Northern Ireland asset is the historical Ulster Banner from
 [flag-icons](https://github.com/lipis/flag-icons). Northern Ireland has no current distinct official
@@ -95,6 +97,10 @@ The 50 U.S. state assets come from [FlagCDN](https://flagcdn.com/), whose flag a
 [Wikimedia Commons](https://commons.wikimedia.org/) vectors and identified as public domain in
 [Flagpedia's terms](https://flagpedia.net/terms). The source artwork is normalized to the same
 rounded 36×36 canvas as the bundled Twemoji flags.
+
+The 13 Canadian and 8 Australian subdivision assets come from the MIT-licensed
+[iso3166-flags](https://github.com/amckenna41/iso3166-flags) dataset and use current ISO 3166-2
+codes. Their source artwork is also normalized to the rounded 36×36 canvas.
 
 All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
 configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.
@@ -322,7 +328,8 @@ Copyright &copy; 2026 [Dominik Hladík](https://github.com/Celtian).
 
 The package code is licensed under the [MIT License](LICENSE).
 
-The bundled graphics use source-specific terms: Twemoji is licensed under CC-BY-4.0, the Northern
-Ireland asset is MIT-licensed, and the FlagCDN U.S. state artwork is public domain. Generated asset
-roots include attribution and license notices. Keep the required notices when redistributing the
-graphics. See [ATTRIBUTION.txt](ATTRIBUTION.txt) and [LICENSE-GRAPHICS](LICENSE-GRAPHICS).
+The bundled graphics use source-specific terms: Twemoji is licensed under CC-BY-4.0; the Northern
+Ireland, Canadian, and Australian subdivision assets are MIT-licensed; and the FlagCDN U.S. state
+artwork is public domain. Generated asset roots include attribution and license notices. Keep the
+required notices when redistributing the graphics. See [ATTRIBUTION.txt](ATTRIBUTION.txt) and
+[LICENSE-GRAPHICS](LICENSE-GRAPHICS).

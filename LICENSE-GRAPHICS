@@ -21,6 +21,11 @@ Flagpedia identifies its flag images as public domain and available for use
 without restriction:
 https://flagpedia.net/terms
 
+Canadian and Australian subdivision flag graphics (`ca-*.svg`, `au-*.svg`)
+
+Source:
+https://github.com/amckenna41/iso3166-flags
+
 Northern Ireland flag graphic (`gb-nir.svg`)
 
 Source:
@@ -28,6 +33,7 @@ https://github.com/lipis/flag-icons
 
 The MIT License (MIT)
 
+Copyright (c) 2021 AJ McKenna
 Copyright (c) 2013 Panayiotis Lipiridis
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of

@@ -30,7 +30,7 @@ describe('generate', () => {
     const cwd = await temporaryDirectory();
     const testConfig: FlagResizerConfig = {
       default: profile({
-        filter: { type: 'whitelist', values: ['cz', 'gb-nir', 'us-ca'] },
+        filter: { type: 'whitelist', values: ['au-act', 'ca-on', 'cz', 'gb-nir', 'us-ca'] },
         sizes: [
           [20, 15],
           [40, 30],
@@ -47,15 +47,15 @@ describe('generate', () => {
     const first = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(first.profiles[0]).toMatchObject({
       name: 'default',
-      countries: 3,
-      images: 12,
+      countries: 5,
+      images: 20,
       removed: 0,
     });
 
     for (const format of ['png', 'webp'] as const) {
       for (const size of ['20x15', '40x30'] as const) {
         const [width, height] = size.split('x').map(Number);
-        for (const code of ['cz', 'gb-nir', 'us-ca']) {
+        for (const code of ['au-act', 'ca-on', 'cz', 'gb-nir', 'us-ca']) {
           const metadata = await sharp(
             path.join(cwd, 'assets', format, size, `${code}.${format}`),
           ).metadata();
@@ -76,6 +76,8 @@ describe('generate', () => {
 
     const generated = await readFile(path.join(cwd, 'generated/flags.ts'), 'utf8');
     expect(generated).toContain('export const FLAGS');
+    expect(generated).toContain('"au-act": "Australian Capital Territory"');
+    expect(generated).toContain('"ca-on": "Ontario"');
     expect(generated).toContain('"gb-nir": "Northern Ireland"');
     expect(generated).toContain('"us-ca": "California"');
     expect(generated).toContain('getFlagPath');
@@ -84,13 +86,13 @@ describe('generate', () => {
     const manifest = JSON.parse(
       await readFile(path.join(cwd, '.flag-resizer/manifest.json'), 'utf8'),
     ) as { profiles: { default: { files: unknown[] } } };
-    expect(manifest.profiles.default.files).toHaveLength(17);
+    expect(manifest.profiles.default.files).toHaveLength(25);
 
     const second = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(second.profiles[0]).toMatchObject({
       created: 0,
       updated: 0,
-      unchanged: 17,
+      unchanged: 25,
       removed: 0,
     });
   });

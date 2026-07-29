@@ -26,6 +26,8 @@ test('public API preserves literal configuration types', () => {
   expectTypeOf(config).toExtend<FlagResizerConfig>();
   expectTypeOf(config.default.formats[0]).toEqualTypeOf<'png'>();
   expectTypeOf(generate).returns.resolves.toEqualTypeOf<GenerationResult>();
+  expectTypeOf<'au-act'>().toExtend<CountryCode>();
+  expectTypeOf<'ca-on'>().toExtend<CountryCode>();
   expectTypeOf<'cq'>().toExtend<CountryCode>();
   expectTypeOf<'cz'>().toExtend<CountryCode>();
   expectTypeOf<'dg'>().toExtend<CountryCode>();

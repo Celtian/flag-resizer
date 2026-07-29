@@ -55,6 +55,10 @@ const required = [
   'dist/index.d.ts',
   'dist/index.js',
   'flags/ac.svg',
+  'flags/au-act.svg',
+  'flags/au-wa.svg',
+  'flags/ca-ab.svg',
+  'flags/ca-yt.svg',
   'flags/cp.svg',
   'flags/cq.svg',
   'flags/cz.svg',
@@ -78,12 +82,12 @@ for (const file of required) {
 }
 
 const flagCount = [...files].filter((file) =>
-  /^flags\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
+  /^flags\/(?:[a-z]{2}|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
     file,
   ),
 ).length;
-if (flagCount !== 313) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 313.`);
+if (flagCount !== 334) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 334.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);
