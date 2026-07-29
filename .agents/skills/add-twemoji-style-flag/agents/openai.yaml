@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Add Twemoji-Style Flag'
+  short_description: 'Add and normalize reusable flag artwork'
+  default_prompt: 'Use $add-twemoji-style-flag to add and normalize a sourced flag SVG.'
