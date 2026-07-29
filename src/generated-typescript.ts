@@ -66,7 +66,7 @@ export function getFlagPath(
   size: FlagSize,
   format: FlagFormat,
 ): string {
-  const publicPath = FLAG_PUBLIC_PATHS[format];
+  const publicPath: string = FLAG_PUBLIC_PATHS[format];
   const basePath = publicPath === '/' ? '' : publicPath;
   return \`\${basePath}/\${size}/\${code}.\${format}\`;
 }

@@ -40,6 +40,7 @@ describe('generated TypeScript manifest', () => {
     expect(first).toContain('export type FlagSize = (typeof FLAG_SIZES)[number]');
     expect(first).toContain('png: "/flags/png"');
     expect(first).toContain('webp: "https://cdn.test/webp"');
+    expect(first).toContain('const publicPath: string = FLAG_PUBLIC_PATHS[format]');
     expect(first).toContain('return `${basePath}/${size}/${code}.${format}`');
   });
 });
