@@ -1,0 +1,22 @@
+name: Get & Cache Dependencies
+description: Install Bun dependencies and cache the Bun package cache
+inputs:
+  caching:
+    description: Whether to cache dependencies
+    required: false
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: 💾 Cache dependencies
+      if: inputs.caching == 'true'
+      uses: actions/cache@v6
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    - name: 🛠️ Install dependencies
+      run: bun ci
+      shell: bash

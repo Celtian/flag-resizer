@@ -11,5 +11,7 @@ export default defineConfig({
   dts: true,
   clean: true,
   sourcemap: true,
-  external: ['c12', 'sharp', 'zod'],
+  deps: {
+    neverBundle: ['c12', 'sharp', 'zod'],
+  },
 });

@@ -1,7 +1,15 @@
+import { readFileSync } from 'node:fs';
+
 import { afterEach, describe, expect, test, vi } from 'vitest';
 
 import { formatProfileSummary, formatVerboseDetails, runCli } from '../src/cli-core.js';
 import type { GenerationResult } from '../src/types.js';
+
+const packageVersion = (
+  JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
+    version: string;
+  }
+).version;
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -17,7 +25,7 @@ describe('CLI', () => {
 
     log.mockClear();
     await expect(runCli(['--version'])).resolves.toBe(0);
-    expect(log).toHaveBeenCalledWith('flag-resizer 0.1.0');
+    expect(log).toHaveBeenCalledWith(`flag-resizer ${packageVersion}`);
   });
 
   test('reports parser and generation errors', async () => {

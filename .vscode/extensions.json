@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "waderyan.gitblame",
+    "tyriar.sort-lines",
+    "simonsiefke.svg-preview",
+    "shd101wyy.markdown-preview-enhanced"
+  ]
+}

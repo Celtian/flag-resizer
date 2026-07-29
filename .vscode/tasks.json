@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "bun: build",
+      "type": "process",
+      "command": "bun",
+      "args": ["run", "build"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "bun: test",
+      "type": "process",
+      "command": "bun",
+      "args": ["run", "test"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "bun: check",
+      "type": "process",
+      "command": "bun",
+      "args": ["run", "check"],
+      "problemMatcher": []
+    }
+  ]
+}

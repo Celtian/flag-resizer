@@ -1,6 +1,7 @@
 {
   "name": "@celtian/flag-resizer",
-  "version": "0.1.0",
+  "version": "0.0.0",
+  "private": false,
   "description": "Generate typed, optimized PNG and WebP country flag assets from Twemoji SVGs.",
   "keywords": [
     "flags",
@@ -27,11 +28,16 @@
   "type": "module",
   "sideEffects": false,
   "engines": {
-    "node": ">=22"
+    "node": ">=22",
+    "bun": ">=1.3.14"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "packageManager": "bun@1.3.14",
   "bin": {
-    "flag-resizer": "./dist/cli.js"
+    "flag-resizer": "dist/cli.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -46,6 +52,7 @@
     "dist",
     "flags",
     "ATTRIBUTION.txt",
+    "CHANGELOG.md",
     "LICENSE",
     "LICENSE-GRAPHICS",
     "README.md"
@@ -61,10 +68,20 @@
     "test:types": "vitest run --typecheck.only",
     "test:coverage": "vitest run --coverage",
     "package:check": "bun ./scripts/check-package.ts",
-    "check": "bun run lint && bun run format:check && bun run typecheck && bun run test && bun run test:types && bun run build && bun run package:check",
+    "check": "bun run lint && bun run format:check && bun run typecheck && bun run test:coverage && bun run test:types && bun run build && bun run package:check",
+    "script:package-github": "bun ./scripts/package-github.ts",
     "prepare": "husky",
     "prepack": "bun run build",
-    "prepublishOnly": "bun run check"
+    "prepublishOnly": "bun run check",
+    "preversion": "bun run check",
+    "version": "auto-changelog -p && git add CHANGELOG.md",
+    "postversion": "git push && git push --follow-tags",
+    "publish:beta": "bun ci && bun run check && npm publish --ignore-scripts --tag beta",
+    "release:beta": "git checkout master && npm version prerelease --preid=beta -m \"chore(update): prerelease %s β\"",
+    "release:patch": "git checkout master && npm version patch -m \"chore(update): patch release %s 🐛\"",
+    "release:minor": "git checkout master && npm version minor -m \"chore(update): release %s 🚀\"",
+    "release:major": "git checkout master && npm version major -m \"chore(update): major release %s 💥\"",
+    "fix-vulnerabilities": "bun update && bun audit"
   },
   "dependencies": {
     "c12": "^3.3.4",
@@ -76,14 +93,22 @@
     "@types/bun": "^1.3.14",
     "@types/node": "^24.10.0",
     "@vitest/coverage-v8": "^4.1.10",
+    "auto-changelog": "^2.6.0",
     "eslint": "^10.8.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.2.0",
     "prettier": "^3.9.6",
     "quick-commitlint": "^0.1.1",
-    "tsdown": "^0.20.0",
+    "tsdown": "^0.22.14",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0",
     "vitest": "^4.1.10"
+  },
+  "auto-changelog": {
+    "remote": "none",
+    "commitUrl": "https://github.com/Celtian/flag-resizer/commit/{id}",
+    "issueUrl": "https://github.com/Celtian/flag-resizer/issues/{id}",
+    "mergeUrl": "https://github.com/Celtian/flag-resizer/pull/{id}",
+    "compareUrl": "https://github.com/Celtian/flag-resizer/compare/{from}...{to}"
   }
 }

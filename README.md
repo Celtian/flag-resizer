@@ -1,26 +1,51 @@
-# `@celtian/flag-resizer`
+<div align="center">
 
-Generate optimized PNG and WebP country flags, plus a deterministic TypeScript
-manifest, from the bundled Twemoji SVG artwork.
+# 🏁 Flag Resizer
 
-## Requirements
+**Generate typed, optimized PNG and WebP country flag assets from bundled Twemoji SVGs.**
 
-- Node.js 22 or newer
-- npm, pnpm, Yarn, or Bun
+[![npm version](https://img.shields.io/npm/v/%40celtian%2Fflag-resizer)](https://www.npmjs.com/package/@celtian/flag-resizer)
+[![Test PR](https://github.com/Celtian/flag-resizer/actions/workflows/pull-request.yml/badge.svg)](https://github.com/Celtian/flag-resizer/actions/workflows/pull-request.yml)
+[![License](https://img.shields.io/github/license/Celtian/flag-resizer)](LICENSE)
 
-## Installation
+[npm](https://www.npmjs.com/package/@celtian/flag-resizer) · [Changelog](CHANGELOG.md) · [Source](https://github.com/Celtian/flag-resizer)
 
-```sh
+</div>
+
+`@celtian/flag-resizer` converts its bundled country flag artwork into application-ready image
+sets. Configure one or more profiles, choose the countries, dimensions, and formats you need, and
+generate a deterministic TypeScript manifest alongside the assets.
+
+## ✨ Why use it?
+
+| Feature                           | Details                                                                                        |
+| --------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 🏳️ **Bundled country flags**      | Includes 252 two-letter country and territory flags from Twemoji.                              |
+| 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
+| 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
+| 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
+| 🧹 **Safe deterministic updates** | Tracks owned files, removes stale generated output, and preserves unrelated files.             |
+| 🛠️ **CLI and programmatic API**   | Works in package scripts or directly from TypeScript build tooling.                            |
+
+## 🚀 Quick start
+
+Node.js 22 or newer is required.
+
+### 1. Install
+
+With Bun:
+
+```bash
 bun add --dev @celtian/flag-resizer
 ```
 
 With npm:
 
-```sh
-npm install --save-dev @celtian/flag-resizer
+```bash
+npm install @celtian/flag-resizer --save-dev
 ```
 
-## Configuration
+### 2. Configure
 
 Create `flag-resizer.config.ts` in your project:
 
@@ -57,49 +82,61 @@ export default defineConfig({
 });
 ```
 
-Filter values are lowercase flag/country codes, not language codes. For example,
-use `cz` for the Czech flag and `gb` for the British flag. Unknown codes fail
-validation.
+Filter values are lowercase flag or country codes, not language codes. For example, use `cz` for
+the Czech flag and `gb` for the British flag. Unknown codes fail validation.
 
-All sizes in one profile must use the same aspect ratio. Output paths are
-resolved relative to the configuration file. `publicPath` can be a root-relative
-path or an absolute CDN URL.
+All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
+configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.
 
-C12 loads TypeScript, JavaScript, JSON, JSONC, JSON5, YAML, and TOML
-configuration variants.
+Configuration is loaded by C12 and may use TypeScript, JavaScript, JSON, JSONC, JSON5, YAML, or TOML.
 
-## CLI
+### 3. Generate
 
-Generate every profile:
-
-```sh
+```bash
 bunx flag-resizer
 ```
 
-Generate selected profiles:
+```text
+... Generating flag assets…
+✔  default · 2 flags · 20 images · 25 created · 15 ms
+```
 
-```sh
+## 🧭 CLI reference
+
+```text
+flag-resizer [profiles...] [options]
+
+-c, --config <path>        Use an explicit configuration file.
+    --concurrency <count>  Maximum parallel image conversions.
+    --dry-run              Preview changes without writing files.
+    --verbose              Show configuration and output details.
+-h, --help                Display usage information.
+-v, --version             Display the installed version.
+```
+
+With no profile arguments, every configured profile is generated. Pass profile names to generate
+only those profiles:
+
+```bash
 bunx flag-resizer default marketing
 ```
 
-Use another config or preview changes:
+Use an explicit config, limit parallel image conversions, or preview changes:
 
-```sh
+```bash
 bunx flag-resizer --config ./config/flags.config.ts --concurrency 4
 bunx flag-resizer --dry-run
 bunx flag-resizer --dry-run --verbose
 ```
 
-Interactive output stays compact and uses color when the terminal supports it:
+Interactive output stays compact and uses color when the terminal supports it. Set `NO_COLOR=1` to
+disable ANSI colors or `FORCE_COLOR=1` to enable them when output is redirected.
 
-```text
-... Planning flag generation…
-✔  default · 2 flags · 8 images · 13 created · 15 ms
-```
+### 🎨 Verbose output
 
-Add `--verbose` to show the loaded configuration, requested sizes and formats,
-asset output directories, generated TypeScript file, and managed manifest. Paths
-inside the current project are kept relative for readability:
+Add `--verbose` to show the loaded configuration, requested sizes and formats, asset output
+directories, generated TypeScript file, and managed manifest. Paths inside the current project are
+kept relative for readability:
 
 ```text
 ... Planning flag generation…
@@ -114,10 +151,9 @@ inside the current project are kept relative for readability:
    manifest    .flag-resizer/manifest.json
 ```
 
-Set `NO_COLOR=1` to disable ANSI colors or `FORCE_COLOR=1` to enable them when
-output is redirected.
+## 📁 Generated assets
 
-The asset layout is:
+Each format is organized into dimension directories:
 
 ```text
 public/flags/png/
@@ -131,19 +167,21 @@ public/flags/png/
     └── gb.png
 ```
 
-The CLI records only files it owns in `.flag-resizer/manifest.json`. Later runs
-remove stale generated files while preserving unrelated files in the same
-folders.
+The CLI records only files it owns in `.flag-resizer/manifest.json`. Later runs remove stale
+generated files while preserving unrelated files in the same directories.
 
-## Generated TypeScript
+All images are staged before existing outputs or the ownership manifest are updated. A conversion
+failure therefore leaves the current assets and manifest unchanged.
+
+## 📝 Generated TypeScript
 
 Each profile generates:
 
-- `FLAGS` and its filtered `CountryCode` union
-- `FLAG_SIZES`, `FlagSize`, and `FLAG_DIMENSIONS`
-- `FLAG_FORMATS` and `FlagFormat`
-- `FLAG_PUBLIC_PATHS`
-- `getFlagPath(code, size, format)`
+- `FLAGS` and its filtered `CountryCode` union.
+- `FLAG_SIZES`, `FlagSize`, and `FLAG_DIMENSIONS`.
+- `FLAG_FORMATS` and `FlagFormat`.
+- `FLAG_PUBLIC_PATHS`.
+- `getFlagPath(code, size, format)`.
 
 ```ts
 import { FLAG_DIMENSIONS, getFlagPath, type CountryCode, type FlagSize } from './generated/flags';
@@ -172,9 +210,9 @@ An Angular template can use the generated paths in a responsive picture:
 </picture>
 ```
 
-## Programmatic API
+## 🛠️ Programmatic API
 
-Load a discovered or explicit config:
+Load a discovered or explicit configuration file:
 
 ```ts
 import { generate } from '@celtian/flag-resizer';
@@ -207,39 +245,73 @@ const config = defineConfig({
 await generate({ config });
 ```
 
-## Validation and failures
+## ✅ Validation
 
 The generator rejects:
 
-- language codes or unknown country codes
-- duplicate formats, sizes, or filter values
-- dimensions that are not positive integers
-- mixed aspect ratios within a profile
-- missing output settings for an enabled format
-- output collisions between profiles
+- Language codes or unknown country codes.
+- Duplicate formats, sizes, or filter values.
+- Dimensions that are not positive integers.
+- Mixed aspect ratios within a profile.
+- Missing output settings for an enabled format.
+- Output collisions between profiles.
 
-All images are staged before existing outputs or the managed manifest are
-updated. A conversion failure therefore leaves the manifest unchanged.
+## 🏗️ Development
 
-## Development
+Use Node.js 24 from `.nvmrc` and Bun 1.3.14 from `package.json`:
 
-Install the frozen dependency graph and run the complete validation suite:
-
-```sh
+```bash
 bun ci
 bun run check
 ```
 
-Husky installs the repository hooks during `bun ci`. The pre-commit hook runs
-ESLint and Prettier on staged files through lint-staged, while the commit-message
-hook validates Conventional Commits with Quick Commitlint.
+`bun run check` runs formatting, linting, type checks, runtime and public-API tests, the build, and
+published-package validation.
 
-## License and attribution
+Husky installs the repository hooks during `bun ci`. The pre-commit hook runs ESLint and Prettier on
+staged files through lint-staged, while the commit-message hook validates Conventional Commits with
+Quick Commitlint.
 
-The package code is MIT licensed.
+## 🏷️ Releases
 
-The bundled Twemoji graphics, and the PNG/WebP derivatives produced from them,
-are licensed under CC-BY-4.0. Generated asset roots include attribution and
-license notices. Keep an appropriate attribution when redistributing the
-graphics. See [`ATTRIBUTION.txt`](./ATTRIBUTION.txt) and
-[`LICENSE-GRAPHICS`](./LICENSE-GRAPHICS).
+Run a release command from a clean working tree:
+
+```bash
+bun run release:patch
+bun run release:minor
+bun run release:major
+```
+
+Each command checks out `master`, validates the package, updates `CHANGELOG.md`, creates the release
+commit and `v*` tag, then pushes the commit and tags. The tag workflow publishes the public
+`@celtian/flag-resizer` package to npm and GitHub Packages.
+
+Create an npm beta release with:
+
+```bash
+bun run release:beta
+```
+
+Beta tags publish with the npm `beta` dist-tag and are not copied to GitHub Packages. The repository
+must provide the `NPM_AUTH_TOKEN` Actions secret; GitHub Packages uses the workflow's automatic
+`GITHUB_TOKEN`.
+
+## 🤝 Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and
+pull-request checklist. Participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## 🔒 Security
+
+Report suspected vulnerabilities privately according to [SECURITY.md](SECURITY.md).
+
+## 📄 License and attribution
+
+Copyright &copy; 2026 [Dominik Hladík](https://github.com/Celtian).
+
+The package code is licensed under the [MIT License](LICENSE).
+
+The bundled Twemoji graphics and the PNG/WebP derivatives produced from them are licensed under
+CC-BY-4.0. Generated asset roots include attribution and license notices. Keep the required
+attribution when redistributing the graphics. See [ATTRIBUTION.txt](ATTRIBUTION.txt) and
+[LICENSE-GRAPHICS](LICENSE-GRAPHICS).

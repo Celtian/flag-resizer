@@ -1,3 +1,36 @@
+import { readFileSync } from 'node:fs';
+
+interface PackageManifest {
+  name: string;
+  bin?: Record<string, string>;
+  publishConfig?: {
+    access?: string;
+    registry?: string;
+  };
+}
+
+const manifest = JSON.parse(
+  readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+) as PackageManifest;
+
+if (manifest.name !== '@celtian/flag-resizer') {
+  throw new Error(`Unexpected package name: ${manifest.name}`);
+}
+if (manifest.bin?.['flag-resizer'] !== 'dist/cli.js') {
+  throw new Error('The flag-resizer executable must point to dist/cli.js.');
+}
+if (
+  manifest.publishConfig?.access !== 'public' ||
+  manifest.publishConfig.registry !== 'https://registry.npmjs.org'
+) {
+  throw new Error('The package must publish publicly to the npm registry.');
+}
+
+const cli = readFileSync(new URL('../dist/cli.js', import.meta.url), 'utf8');
+if (!cli.startsWith('#!/usr/bin/env node\n')) {
+  throw new Error('The published CLI is missing its Node.js shebang.');
+}
+
 const result = Bun.spawnSync(['bun', 'pm', 'pack', '--dry-run', '--ignore-scripts']);
 
 if (!result.success) {
@@ -18,6 +51,7 @@ if (files.size === 0) {
 
 const required = [
   'ATTRIBUTION.txt',
+  'CHANGELOG.md',
   'LICENSE',
   'LICENSE-GRAPHICS',
   'README.md',

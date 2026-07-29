@@ -1,0 +1,31 @@
+name: 🧪 Test PR
+
+'on': pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: ✅ Validate & Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🗜️ Checkout
+        uses: actions/checkout@v7
+
+      - name: 🗜️ Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: 🗜️ Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: 🛠️ Install dependencies
+        uses: ./.github/actions/cached-deps
+
+      - name: ✅ Validate package
+        run: bun run check
