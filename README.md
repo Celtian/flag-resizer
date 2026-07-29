@@ -56,7 +56,7 @@ export default defineConfig({
   default: {
     filter: {
       type: 'whitelist',
-      values: ['cz', 'gb'],
+      values: ['cz', 'gb', 'us-*'],
     },
     sizes: [
       [20, 15],
@@ -82,12 +82,15 @@ export default defineConfig({
 });
 ```
 
-Filter values are lowercase flag or country codes, not language codes. For example, use `cz` for
-the Czech flag, `gb` for the British flag, and `gb-eng`, `gb-nir`, `gb-sct`, or `gb-wls` for the
-flags of England, Northern Ireland, Scotland, and Wales. U.S. states use FlagCDN-compatible codes
-such as `us-ca` for California and `us-ny` for New York. Canadian subdivisions use codes such as
-`ca-on` for Ontario, while Australian subdivisions use codes such as `au-nsw` for New South Wales.
-Unknown codes fail validation.
+Filter values are lowercase flag or country codes, not language codes. They can be exact codes or
+patterns using `*` as a wildcard. For example, use `cz` for the Czech flag, `gb` for the British
+flag, or `us-*` for all 50 U.S. subdivision flags. The `us-*` pattern does not include the national
+`us` flag; add `us` separately if needed. Likewise, `ca-*` selects Canadian subdivisions, `au-*`
+selects Australian subdivisions, and `*` selects every bundled flag.
+
+Subdivision codes can also be selected individually: `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
+for the United Kingdom; `us-ca` for California; `ca-on` for Ontario; or `au-nsw` for New South
+Wales. Unknown codes, malformed patterns, and patterns that match no bundled flags fail validation.
 
 The Northern Ireland asset is the historical Ulster Banner from
 [flag-icons](https://github.com/lipis/flag-icons). Northern Ireland has no current distinct official
@@ -266,7 +269,7 @@ await generate({ config });
 
 The generator rejects:
 
-- Language codes or unknown country codes.
+- Language codes, unknown country codes, malformed patterns, or patterns with no matches.
 - Duplicate formats, sizes, or filter values.
 - Dimensions that are not positive integers.
 - Mixed aspect ratios within a profile.

@@ -5,6 +5,8 @@ export { FlagResizerError } from './errors.js';
 export { generate } from './generator.js';
 export type {
   FlagFilter,
+  FlagFilterPattern,
+  FlagFilterValue,
   FlagFormat,
   FlagResizerConfig,
   FlagSize,

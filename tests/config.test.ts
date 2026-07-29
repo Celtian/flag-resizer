@@ -40,6 +40,33 @@ describe('configuration', () => {
     expect(resolved.profiles[0]?.output.ts).toBe(path.join(cwd, 'generated/secondary.ts'));
   });
 
+  test('supports wildcard whitelist and blacklist filter values', async () => {
+    const whitelist = await resolveConfiguration({
+      config: config(
+        profile({
+          filter: { type: 'whitelist', values: ['us-*'] },
+        }),
+      ),
+    });
+    const whitelistedCountries = whitelist.profiles[0]?.countries ?? [];
+
+    expect(whitelistedCountries).toHaveLength(50);
+    expect(whitelistedCountries.every((code) => code.startsWith('us-'))).toBe(true);
+    expect(whitelistedCountries).not.toContain('us');
+
+    const blacklist = await resolveConfiguration({
+      config: config(
+        profile({
+          filter: { type: 'blacklist', values: ['us-*'] },
+        }),
+      ),
+    });
+    const blacklistedCountries = blacklist.profiles[0]?.countries ?? [];
+
+    expect(blacklistedCountries).toContain('us');
+    expect(blacklistedCountries.some((code) => code.startsWith('us-'))).toBe(false);
+  });
+
   test.each([
     ['format typo', config(profile({ formats: ['wepb' as never] })), 'Did you mean "webp"'],
     [
@@ -47,6 +74,24 @@ describe('configuration', () => {
       config(
         profile({
           filter: { type: 'whitelist', values: ['cs' as never] },
+        }),
+      ),
+      'Invalid flag-resizer configuration',
+    ],
+    [
+      'filter pattern with no matches',
+      config(
+        profile({
+          filter: { type: 'whitelist', values: ['zz-*'] },
+        }),
+      ),
+      'matches no bundled flags',
+    ],
+    [
+      'unsupported filter pattern syntax',
+      config(
+        profile({
+          filter: { type: 'whitelist', values: ['us-?' as never] },
         }),
       ),
       'Invalid flag-resizer configuration',

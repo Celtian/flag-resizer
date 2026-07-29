@@ -4,6 +4,8 @@ import {
   defineConfig,
   generate,
   type CountryCode,
+  type FlagFilterPattern,
+  type FlagFilterValue,
   type FlagFormat,
   type FlagResizerConfig,
   type GenerationResult,
@@ -34,5 +36,7 @@ test('public API preserves literal configuration types', () => {
   expectTypeOf<'gb-eng'>().toExtend<CountryCode>();
   expectTypeOf<'gb-nir'>().toExtend<CountryCode>();
   expectTypeOf<'us-ca'>().toExtend<CountryCode>();
+  expectTypeOf<'us-*'>().toExtend<FlagFilterPattern>();
+  expectTypeOf<'us-*'>().toExtend<FlagFilterValue>();
   expectTypeOf<'webp'>().toExtend<FlagFormat>();
 });

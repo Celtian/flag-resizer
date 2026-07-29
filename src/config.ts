@@ -7,6 +7,7 @@ import { COUNTRY_CODES, FLAGS, type CountryCode } from './data/flags.js';
 import { FlagResizerError } from './errors.js';
 import type {
   FlagFormat,
+  FlagFilterValue,
   FlagResizerConfig,
   GenerateOptions,
   ProfileConfig,
@@ -15,6 +16,10 @@ import type {
 } from './types.js';
 
 const countryCodeSchema = z.enum(COUNTRY_CODES as [CountryCode, ...CountryCode[]]);
+const filterPatternSchema = z
+  .string()
+  .regex(/^(?=.*\*)[a-z*]+(?:-[a-z*]+)*$/u, 'must be a lowercase flag code or a pattern using "*"');
+const filterValueSchema = z.union([countryCodeSchema, filterPatternSchema]);
 const formatSchema = z.enum(['png', 'webp']);
 const sizeSchema = z.tuple([
   z.number().int().positive('width must be a positive integer'),
@@ -31,7 +36,7 @@ const profileSchema = z
     filter: z
       .object({
         type: z.enum(['whitelist', 'blacklist']),
-        values: z.array(countryCodeSchema),
+        values: z.array(filterValueSchema),
       })
       .strict(),
     sizes: z.array(sizeSchema).min(1),
@@ -118,11 +123,26 @@ function assertConsistentRatio(profileName: string, profile: ProfileConfig): voi
   }
 }
 
+function matchesFilterValue(code: CountryCode, value: FlagFilterValue): boolean {
+  if (!value.includes('*')) return code === value;
+  return new RegExp(`^${value.split('*').join('.*')}$`, 'u').test(code);
+}
+
+function assertFilterValuesMatch(profileName: string, profile: ProfileConfig): void {
+  for (const value of profile.filter.values) {
+    if (!COUNTRY_CODES.some((code) => matchesFilterValue(code, value))) {
+      throw new FlagResizerError(
+        `Profile "${profileName}" contains filter pattern "${value}" that matches no bundled flags.`,
+      );
+    }
+  }
+}
+
 function selectCountries(profile: ProfileConfig): readonly CountryCode[] {
-  const values = new Set(profile.filter.values);
-  return COUNTRY_CODES.filter((code) =>
-    profile.filter.type === 'whitelist' ? values.has(code) : !values.has(code),
-  );
+  return COUNTRY_CODES.filter((code) => {
+    const matches = profile.filter.values.some((value) => matchesFilterValue(code, value));
+    return profile.filter.type === 'whitelist' ? matches : !matches;
+  });
 }
 
 function resolveProfile(
@@ -132,6 +152,7 @@ function resolveProfile(
 ): ResolvedProfileConfig {
   assertUniqueValues(name, profile);
   assertConsistentRatio(name, profile);
+  assertFilterValuesMatch(name, profile);
 
   for (const format of profile.formats) {
     if (!profile.output[format]) {

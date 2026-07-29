@@ -2,10 +2,12 @@ import type { CountryCode } from './data/flags.js';
 
 export type FlagFormat = 'png' | 'webp';
 export type FlagSize = readonly [width: number, height: number];
+export type FlagFilterPattern = `${string}*${string}`;
+export type FlagFilterValue = CountryCode | FlagFilterPattern;
 
 export interface FlagFilter {
   type: 'whitelist' | 'blacklist';
-  values: readonly CountryCode[];
+  values: readonly FlagFilterValue[];
 }
 
 export interface FormatOutput {
