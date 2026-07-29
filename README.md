@@ -20,7 +20,7 @@ a deterministic TypeScript manifest alongside the assets.
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled flags**              | Includes all 258 Twemoji regional flags and 4 UK subdivision flags.                            |
+| 🏳️ **Bundled flags**              | Includes all 259 Twemoji regional flags and 4 UK subdivision flags.                            |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |

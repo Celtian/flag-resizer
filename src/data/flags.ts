@@ -51,6 +51,7 @@ export const FLAGS = {
   cn: 'China',
   co: 'Colombia',
   cp: 'Clipperton Island',
+  cq: 'Sark',
   cr: 'Costa Rica',
   cu: 'Cuba',
   cv: 'Cape Verde',

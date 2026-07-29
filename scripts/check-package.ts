@@ -56,6 +56,7 @@ const required = [
   'dist/index.js',
   'flags/ac.svg',
   'flags/cp.svg',
+  'flags/cq.svg',
   'flags/cz.svg',
   'flags/dg.svg',
   'flags/ea.svg',
@@ -76,8 +77,8 @@ for (const file of required) {
 const flagCount = [...files].filter((file) =>
   /^flags\/(?:[a-z]{2}|gb-(?:eng|nir|sct|wls))\.svg$/u.test(file),
 ).length;
-if (flagCount !== 262) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 262.`);
+if (flagCount !== 263) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 263.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);

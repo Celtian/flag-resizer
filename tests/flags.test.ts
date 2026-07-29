@@ -12,14 +12,15 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(262);
-    expect(Object.keys(FLAGS)).toHaveLength(262);
+    expect(COUNTRY_CODES).toHaveLength(263);
+    expect(Object.keys(FLAGS)).toHaveLength(263);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
   test('exports representative names', () => {
     expect(FLAGS.ac).toBe('Ascension Island');
     expect(FLAGS.cp).toBe('Clipperton Island');
+    expect(FLAGS.cq).toBe('Sark');
     expect(FLAGS.cz).toBe('Czechia');
     expect(FLAGS.dg).toBe('Diego Garcia');
     expect(FLAGS.ea).toBe('Ceuta & Melilla');

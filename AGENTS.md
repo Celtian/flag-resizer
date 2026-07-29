@@ -59,7 +59,7 @@ implementation details.
 - Do not commit generated PNG or WebP files, `.flag-resizer` state, `dist`, or
   coverage output.
 - Treat `flags/*.svg` as source assets, not generated test output. The published
-  package must contain exactly the expected 262 SVG files: all 258 Twemoji
+  package must contain exactly the expected 263 SVG files: all 259 Twemoji
   regional flags plus the `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
   subdivision flags.
 - Changes to Twemoji artwork, `ATTRIBUTION.txt`, or `LICENSE-GRAPHICS` must
