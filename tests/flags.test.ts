@@ -13,8 +13,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(369);
-    expect(Object.keys(FLAGS)).toHaveLength(369);
+    expect(COUNTRY_CODES).toHaveLength(389);
+    expect(Object.keys(FLAGS)).toHaveLength(389);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -59,6 +59,10 @@ describe('flag data', () => {
     expect(FLAGS['gb-sct']).toBe('Scotland');
     expect(FLAGS['gb-wls']).toBe('Wales');
     expect(FLAGS.ic).toBe('Canary Islands');
+    expect(FLAGS['it-21']).toBe('Piedmont');
+    expect(FLAGS['it-32']).toBe('Trentino-South Tyrol');
+    expect(FLAGS['it-82']).toBe('Sicily');
+    expect(FLAGS['it-88']).toBe('Sardinia');
     expect(FLAGS.ta).toBe('Tristan da Cunha');
     expect(FLAGS.eu).toBe('European Union');
     expect(FLAGS.un).toBe('United Nations');

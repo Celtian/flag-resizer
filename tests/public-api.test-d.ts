@@ -37,6 +37,7 @@ test('public API preserves literal configuration types', () => {
   expectTypeOf<'es-cn'>().toExtend<CountryCode>();
   expectTypeOf<'gb-eng'>().toExtend<CountryCode>();
   expectTypeOf<'gb-nir'>().toExtend<CountryCode>();
+  expectTypeOf<'it-82'>().toExtend<CountryCode>();
   expectTypeOf<'us-ca'>().toExtend<CountryCode>();
   expectTypeOf<'us-*'>().toExtend<FlagFilterPattern>();
   expectTypeOf<'us-*'>().toExtend<FlagFilterValue>();
