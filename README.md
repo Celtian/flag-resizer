@@ -221,6 +221,19 @@ The generator rejects:
 All images are staged before existing outputs or the managed manifest are
 updated. A conversion failure therefore leaves the manifest unchanged.
 
+## Development
+
+Install the frozen dependency graph and run the complete validation suite:
+
+```sh
+bun ci
+bun run check
+```
+
+Husky installs the repository hooks during `bun ci`. The pre-commit hook runs
+ESLint and Prettier on staged files through lint-staged, while the commit-message
+hook validates Conventional Commits with Quick Commitlint.
+
 ## License and attribution
 
 The package code is MIT licensed.

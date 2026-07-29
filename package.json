@@ -62,6 +62,7 @@
     "test:coverage": "vitest run --coverage",
     "package:check": "bun ./scripts/check-package.ts",
     "check": "bun run lint && bun run format:check && bun run typecheck && bun run test && bun run test:types && bun run build && bun run package:check",
+    "prepare": "husky",
     "prepack": "bun run build",
     "prepublishOnly": "bun run check"
   },
@@ -76,7 +77,10 @@
     "@types/node": "^24.10.0",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.8.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.2.0",
     "prettier": "^3.9.6",
+    "quick-commitlint": "^0.1.1",
     "tsdown": "^0.20.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0",
