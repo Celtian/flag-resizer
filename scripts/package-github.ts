@@ -4,7 +4,6 @@ import path from 'node:path';
 interface PackageManifest {
   name: string;
   publishConfig?: {
-    access?: string;
     registry?: string;
   };
 }
@@ -12,12 +11,12 @@ interface PackageManifest {
 const packageFile = path.resolve(import.meta.dirname, '..', 'package.json');
 const manifest = JSON.parse(readFileSync(packageFile, 'utf8')) as PackageManifest;
 
-if (manifest.name !== '@celtian/flag-resizer') {
+if (manifest.name !== 'flag-resizer') {
   throw new Error(`Unexpected package name: ${manifest.name}`);
 }
 
+manifest.name = '@celtian/flag-resizer';
 manifest.publishConfig = {
-  ...manifest.publishConfig,
   registry: 'https://npm.pkg.github.com',
 };
 

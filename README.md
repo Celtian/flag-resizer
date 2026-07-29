@@ -4,17 +4,17 @@
 
 **Generate typed, optimized PNG and WebP country flag assets from bundled Twemoji SVGs.**
 
-[![npm version](https://img.shields.io/npm/v/%40celtian%2Fflag-resizer)](https://www.npmjs.com/package/@celtian/flag-resizer)
+[![npm version](https://img.shields.io/npm/v/flag-resizer)](https://www.npmjs.com/package/flag-resizer)
 [![Test PR](https://github.com/Celtian/flag-resizer/actions/workflows/pull-request.yml/badge.svg)](https://github.com/Celtian/flag-resizer/actions/workflows/pull-request.yml)
 [![License](https://img.shields.io/github/license/Celtian/flag-resizer)](LICENSE)
 
-[npm](https://www.npmjs.com/package/@celtian/flag-resizer) · [Changelog](CHANGELOG.md) · [Source](https://github.com/Celtian/flag-resizer)
+[npm](https://www.npmjs.com/package/flag-resizer) · [Changelog](CHANGELOG.md) · [Source](https://github.com/Celtian/flag-resizer)
 
 </div>
 
-`@celtian/flag-resizer` converts its bundled country flag artwork into application-ready image
-sets. Configure one or more profiles, choose the countries, dimensions, and formats you need, and
-generate a deterministic TypeScript manifest alongside the assets.
+`flag-resizer` converts its bundled country flag artwork into application-ready image sets.
+Configure one or more profiles, choose the countries, dimensions, and formats you need, and generate
+a deterministic TypeScript manifest alongside the assets.
 
 ## ✨ Why use it?
 
@@ -36,13 +36,13 @@ Node.js 22 or newer is required.
 With Bun:
 
 ```bash
-bun add --dev @celtian/flag-resizer
+bun add --dev flag-resizer
 ```
 
 With npm:
 
 ```bash
-npm install @celtian/flag-resizer --save-dev
+npm install flag-resizer --save-dev
 ```
 
 ### 2. Configure
@@ -50,7 +50,7 @@ npm install @celtian/flag-resizer --save-dev
 Create `flag-resizer.config.ts` in your project:
 
 ```ts
-import { defineConfig } from '@celtian/flag-resizer';
+import { defineConfig } from 'flag-resizer';
 
 export default defineConfig({
   default: {
@@ -215,7 +215,7 @@ An Angular template can use the generated paths in a responsive picture:
 Load a discovered or explicit configuration file:
 
 ```ts
-import { generate } from '@celtian/flag-resizer';
+import { generate } from 'flag-resizer';
 
 const result = await generate({
   configFile: './flag-resizer.config.ts',
@@ -227,7 +227,7 @@ const result = await generate({
 Or supply inline configuration:
 
 ```ts
-import { defineConfig, generate } from '@celtian/flag-resizer';
+import { defineConfig, generate } from 'flag-resizer';
 
 const config = defineConfig({
   icons: {
@@ -283,8 +283,8 @@ bun run release:major
 ```
 
 Each command checks out `master`, validates the package, updates `CHANGELOG.md`, creates the release
-commit and `v*` tag, then pushes the commit and tags. The tag workflow publishes the public
-`@celtian/flag-resizer` package to npm and GitHub Packages.
+commit and `v*` tag, then pushes the commit and tags. The tag workflow publishes `flag-resizer` to
+npm and `@celtian/flag-resizer` to GitHub Packages.
 
 Create an npm beta release with:
 
