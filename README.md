@@ -206,7 +206,13 @@ Each profile generates:
 - `getFlagPath(code, size, format)`.
 
 ```ts
-import { FLAG_DIMENSIONS, getFlagPath, type CountryCode, type FlagSize } from './generated/flags';
+import {
+  FLAGS,
+  FLAG_DIMENSIONS,
+  getFlagPath,
+  type CountryCode,
+  type FlagSize,
+} from './generated/flags';
 
 function flagImage(code: CountryCode, size: FlagSize) {
   return {
@@ -216,19 +222,31 @@ function flagImage(code: CountryCode, size: FlagSize) {
 }
 ```
 
-An Angular template can use the generated paths in a responsive picture:
+An Angular component can precompute the generated paths for a responsive picture, keeping
+function calls out of the template:
+
+```ts
+function createFlagPicture(code: CountryCode) {
+  return {
+    webpSrcset: [
+      getFlagPath(code, '20x15', 'webp'),
+      `${getFlagPath(code, '40x30', 'webp')} 2x`,
+      `${getFlagPath(code, '60x45', 'webp')} 3x`,
+    ].join(', '),
+    pngSrc: getFlagPath(code, '20x15', 'png'),
+    alt: FLAGS[code],
+  };
+}
+
+export class FlagComponent {
+  protected readonly flag = createFlagPicture('cz');
+}
+```
 
 ```html
 <picture>
-  <source
-    type="image/webp"
-    [attr.srcset]="
-      getFlagPath(code, '20x15', 'webp') + ', ' +
-      getFlagPath(code, '40x30', 'webp') + ' 2x, ' +
-      getFlagPath(code, '60x45', 'webp') + ' 3x'
-    "
-  />
-  <img [src]="getFlagPath(code, '20x15', 'png')" [width]="20" [height]="15" [alt]="FLAGS[code]" />
+  <source type="image/webp" [attr.srcset]="flag.webpSrcset" />
+  <img [src]="flag.pngSrc" [width]="20" [height]="15" [alt]="flag.alt" />
 </picture>
 ```
 
