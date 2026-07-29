@@ -52,6 +52,9 @@ export interface ProfileGenerationResult {
   name: string;
   countries: number;
   images: number;
+  sizes: readonly FlagSize[];
+  formats: readonly FlagFormat[];
+  outputDirectories: Partial<Record<FlagFormat, string>>;
   created: number;
   updated: number;
   unchanged: number;
@@ -62,6 +65,7 @@ export interface ProfileGenerationResult {
 export interface GenerationResult {
   dryRun: boolean;
   durationMs: number;
+  configFile?: string;
   manifestFile: string;
   profiles: ProfileGenerationResult[];
 }

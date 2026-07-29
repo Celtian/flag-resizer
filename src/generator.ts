@@ -535,6 +535,11 @@ export async function generate(options: GenerateOptions = {}): Promise<Generatio
       name: profile.name,
       countries: profile.countries.length,
       images: plan.imageCountByProfile.get(profile.name) ?? 0,
+      sizes: profile.sizes,
+      formats: profile.formats,
+      outputDirectories: Object.fromEntries(
+        profile.formats.map((format) => [format, profile.output[format]?.dir]),
+      ),
       ...counts,
       removed: removedOwnershipCount(previousManifest, manifest, profile.name),
       typeScriptFile: profile.output.ts,
@@ -544,6 +549,7 @@ export async function generate(options: GenerateOptions = {}): Promise<Generatio
   return {
     dryRun,
     durationMs: Math.round(performance.now() - started),
+    ...(resolved.configFile ? { configFile: resolved.configFile } : {}),
     manifestFile,
     profiles,
   };

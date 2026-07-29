@@ -81,7 +81,35 @@ Use another config or preview changes:
 ```sh
 npx flag-resizer --config ./config/flags.config.ts --concurrency 4
 npx flag-resizer --dry-run
+npx flag-resizer --dry-run --verbose
 ```
+
+Interactive output stays compact and uses color when the terminal supports it:
+
+```text
+... Planning flag generation…
+✔  default · 2 flags · 8 images · 13 created · 15 ms
+```
+
+Add `--verbose` to show the loaded configuration, requested sizes and formats,
+asset output directories, generated TypeScript file, and managed manifest. Paths
+inside the current project are kept relative for readability:
+
+```text
+... Planning flag generation…
+✔  default · 2 flags · 8 images · 13 created · 15 ms
+
+   config      flag-resizer.config.ts
+   sizes       20x15, 40x30
+   formats     png, webp
+   png output  public/flags/png
+   webp output public/flags/webp
+   typescript  src/generated/flags.ts
+   manifest    .flag-resizer/manifest.json
+```
+
+Set `NO_COLOR=1` to disable ANSI colors or `FORCE_COLOR=1` to enable them when
+output is redirected.
 
 The asset layout is:
 
