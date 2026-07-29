@@ -74,6 +74,8 @@ const required = [
   'flags/gb-sct.svg',
   'flags/gb-wls.svg',
   'flags/ic.svg',
+  'flags/it-21.svg',
+  'flags/it-88.svg',
   'flags/ta.svg',
   'flags/us-ak.svg',
   'flags/us-ca.svg',
@@ -86,12 +88,12 @@ for (const file of required) {
 }
 
 const flagCount = [...files].filter((file) =>
-  /^flags\/(?:[a-z]{2}|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|de-(?:bb|be|bw|by|hb|he|hh|mv|ni|nw|rp|sh|sl|sn|st|th)|es-(?:an|ar|as|cb|ce|cl|cm|cn|ct|ex|ga|ib|mc|md|ml|nc|pv|ri|vc)|gb-(?:eng|nir|sct|wls)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
+  /^flags\/(?:[a-z]{2}|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|de-(?:bb|be|bw|by|hb|he|hh|mv|ni|nw|rp|sh|sl|sn|st|th)|es-(?:an|ar|as|cb|ce|cl|cm|cn|ct|ex|ga|ib|mc|md|ml|nc|pv|ri|vc)|gb-(?:eng|nir|sct|wls)|it-(?:21|23|25|32|34|36|42|45|52|55|57|62|65|67|72|75|77|78|82|88)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
     file,
   ),
 ).length;
-if (flagCount !== 369) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 369.`);
+if (flagCount !== 389) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 389.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);

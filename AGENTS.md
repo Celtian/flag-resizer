@@ -59,19 +59,20 @@ implementation details.
 - Do not commit generated PNG or WebP files, `.flag-resizer` state, `dist`, or
   coverage output.
 - Treat `flags/*.svg` as source assets, not generated test output. The published
-  package must contain exactly the expected 369 SVG files: all 259 Twemoji
+  package must contain exactly the expected 389 SVG files: all 259 Twemoji
   regional flags, 4 UK subdivision flags, 50 FlagCDN-compatible U.S. state
   flags, 13 Canadian subdivision flags, 8 Australian subdivision flags, 16
-  German state flags, and 19 Spanish autonomous community/city flags.
+  German state flags, 19 Spanish autonomous community/city flags, and 20
+  Italian region flags.
 - Changes to Twemoji artwork, `ATTRIBUTION.txt`, or `LICENSE-GRAPHICS` must
   preserve the CC-BY-4.0 license and required attribution.
 - The `gb-nir.svg` Ulster Banner comes from `flag-icons` under the MIT license;
   preserve its attribution and license notice.
 - The `us-*.svg` U.S. state flags come from FlagCDN's public-domain artwork;
   preserve the source and public-domain notices.
-- The `ca-*.svg`, `au-*.svg`, `de-*.svg`, and `es-*.svg` subdivision flags come
-  from `iso3166-flags` under the MIT license; preserve its attribution and
-  license notice.
+- The `ca-*.svg`, `au-*.svg`, `de-*.svg`, `es-*.svg`, and `it-*.svg`
+  subdivision flags come from `iso3166-flags` under the MIT license; preserve
+  its attribution and license notice.
 - Generated asset directories must receive the attribution and graphics-license
   files expected by the generator tests.
 
