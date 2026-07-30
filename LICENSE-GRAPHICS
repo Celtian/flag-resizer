@@ -21,11 +21,49 @@ Flagpedia identifies its flag images as public domain and available for use
 without restriction:
 https://flagpedia.net/terms
 
-Canadian, Australian, German, Spanish, and Italian subdivision flag graphics
-(`ca-*.svg`, `au-*.svg`, `de-*.svg`, `es-*.svg`, `it-*.svg`)
+Argentinian, Austrian, Canadian, Australian, Brazilian, Swiss, Colombian,
+German, Greek, Mexican, Polish, Portuguese, Spanish, Italian, and Japanese
+subdivision flag graphics
+(`ar-*.svg`, `at-*.svg`, `ca-*.svg`, `au-*.svg`, `br-*.svg`, `ch-*.svg`
+except `ch-ar.svg`, `co-*.svg`, `de-*.svg`, `gr-*.svg`, `mx-*.svg`,
+`pl-*.svg`, `pt-*.svg` except `pt-02.svg`, `pt-12.svg`, and `pt-17.svg`,
+`es-*.svg`, `it-*.svg`, `jp-*.svg`)
 
 Source:
 https://github.com/amckenna41/iso3166-flags
+
+Appenzell Ausserrhoden flag graphic (`ch-ar.svg`)
+
+Source:
+https://commons.wikimedia.org/wiki/File:Flag_of_Canton_of_Appenzell_Ausserrhoden.svg
+
+This Swiss official work is identified as public domain on its Wikimedia
+Commons source page. Legal restrictions on the use of official insignia may
+apply independently of copyright.
+
+Beja flag graphic (`pt-02.svg`)
+
+Author: 117-M-I-K-E
+Source:
+https://commons.wikimedia.org/wiki/File:Flag_of_Beja.svg
+
+The source page identifies this Portuguese official insignia as public domain.
+The artwork was normalized to the package's rounded 36×36 SVG canvas.
+
+Portalegre and Vila Real flag graphics (`pt-12.svg`, `pt-17.svg`)
+
+Authors: Sérgio Horta (`pt-12.svg`) and Zloyel (`pt-17.svg`)
+Sources:
+https://commons.wikimedia.org/wiki/File:PTG.png
+https://commons.wikimedia.org/wiki/File:Bandeira_de_Vila_Real.jpg
+
+These source graphics are licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported license (CC BY-SA 3.0):
+https://creativecommons.org/licenses/by-sa/3.0/
+
+The Portalegre crest was composited over a reconstructed vector flag field, and
+both graphics were resized and normalized to the package's rounded 36×36 SVG
+canvas. These adaptations are distributed under CC BY-SA 3.0.
 
 Northern Ireland flag graphic (`gb-nir.svg`)
 

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 900 600" preserveAspectRatio="none">
+      <rect
+           width="900"
+           height="600"
+           style="fill:#ffffff" />
+        <polygon
+           points="200,125.932 237.035,61.358 397.519,338.643 2.481,338.643 162.965,61.358 "
+           transform="matrix(1.4428991,0,0,1.4425591,161.42018,11.487459)"
+           id="polygon5"
+           style="fill:#009f41;fill-opacity:1" />
+        <polygon
+           points="174.891,171.61 142.727,116.039 19.566,328.836 83.894,328.836 "
+           transform="matrix(1.4428991,0,0,1.4425591,161.42018,11.487459)"
+           id="polygon7"
+           style="fill:#ffffff" />
+        <polygon
+           points="231.275,182.263 316.108,328.836 380.435,328.836 257.272,116.039 166.095,273.581 232.996,273.581 205.709,226.435 "
+           transform="matrix(1.4428991,0,0,1.4425591,161.42018,11.487459)"
+           id="polygon9"
+           style="fill:#ffffff" />
+    </svg>
+  </g>
+</svg>

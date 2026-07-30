@@ -12,11 +12,36 @@ Copyright (c) 2013 Panayiotis Lipiridis
 Source: https://github.com/lipis/flag-icons
 License: MIT
 
-Canadian, Australian, German, Spanish, and Italian subdivision flag graphics
-(`ca-*`, `au-*`, `de-*`, `es-*`, `it-*`)
+Argentinian, Austrian, Canadian, Australian, Brazilian, Swiss, Colombian,
+German, Greek, Mexican, Polish, Portuguese, Spanish, Italian, and Japanese
+subdivision flag graphics
+(`ar-*`, `at-*`, `ca-*`, `au-*`, `br-*`, `ch-*` except `ch-ar`, `co-*`,
+`de-*`, `gr-*`, `mx-*`, `pl-*`, `pt-*` except `pt-02`, `pt-12`, and
+`pt-17`, `es-*`, `it-*`, `jp-*`)
 Copyright (c) 2021 AJ McKenna
 Source: https://github.com/amckenna41/iso3166-flags
 License: MIT
+
+Appenzell Ausserrhoden flag graphic (`ch-ar`)
+Source: https://commons.wikimedia.org/wiki/File:Flag_of_Canton_of_Appenzell_Ausserrhoden.svg
+License status: Public domain (Swiss official work)
+
+Beja flag graphic (`pt-02`)
+Author: 117-M-I-K-E
+Source: https://commons.wikimedia.org/wiki/File:Flag_of_Beja.svg
+License status: Public domain (Portuguese official insignia)
+
+Portalegre flag crest (`pt-12`)
+Author: Sérgio Horta
+Source: https://commons.wikimedia.org/wiki/File:PTG.png
+License: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)
+License URI: https://creativecommons.org/licenses/by-sa/3.0/
+
+Vila Real flag graphic (`pt-17`)
+Author: Zloyel
+Source: https://commons.wikimedia.org/wiki/File:Bandeira_de_Vila_Real.jpg
+License: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)
+License URI: https://creativecommons.org/licenses/by-sa/3.0/
 
 U.S. state flag graphics (`us-*`)
 Source: https://flagcdn.com/

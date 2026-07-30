@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 1000 700" preserveAspectRatio="none">
+      <defs>
+        <polygon id="triangle" fill="#ffff00" points="0.1624598481164531,0 0,-0.5 -0.1624598481164531,0" transform="scale(200)" />
+        <g id="star">
+          <use xlink:href="#triangle"/>
+          <use xlink:href="#triangle" transform="rotate(72)"/>
+          <use xlink:href="#triangle" transform="rotate(-72)"/>
+          <use xlink:href="#triangle" transform="rotate(144)"/>
+          <use xlink:href="#triangle" transform="rotate(-144)"/>
+        </g>
+      </defs>
+      <rect fill="#ffffff" y="0" x="0" height="700" width="1000" />
+      <path fill="#6699fe" d="M 0,700 L 700,0 L 1000,0 L 1000,700 z " />
+      <path fill="#00923f" d="M 0,0 L 0,500 L 500,0 z " />
+      <use xlink:href="#star" x="850" y="550" />
+    </svg>
+  </g>
+</svg>

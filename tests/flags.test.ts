@@ -13,8 +13,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(389);
-    expect(Object.keys(FLAGS)).toHaveLength(389);
+    expect(COUNTRY_CODES).toHaveLength(627);
+    expect(Object.keys(FLAGS)).toHaveLength(627);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -35,13 +35,85 @@ describe('flag data', () => {
     expect(invalid).toEqual([]);
   });
 
+  test('preserves the official non-rectangular Polish flag silhouettes', async () => {
+    for (const code of ['pl-28', 'pl-30']) {
+      const { data, info } = await sharp(path.resolve('flags', `${code}.svg`))
+        .resize(360, 360)
+        .ensureAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const alpha = data[(270 * info.width + 300) * info.channels + 3];
+
+      expect(alpha, `${code} should remain transparent at its lower fly`).toBe(0);
+    }
+  });
+
+  test('preserves the Holy Cross flag hoist panel', async () => {
+    const { data, info } = await sharp(path.resolve('flags/pl-26.svg'))
+      .resize(360, 360)
+      .ensureAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const pixel = (x: number, y: number): number[] => {
+      const offset = (y * info.width + x) * info.channels;
+
+      return [...data.subarray(offset, offset + info.channels)];
+    };
+
+    expect(pixel(40, 100)).toEqual([250, 207, 0, 255]);
+    expect(pixel(150, 70)).toEqual([0, 147, 221, 255]);
+  });
+
+  test('preserves colors inherited from third-party SVG roots', async () => {
+    const centerPixel = async (code: string): Promise<number[]> => {
+      const { data, info } = await sharp(path.resolve('flags', `${code}.svg`))
+        .resize(360, 360)
+        .ensureAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const offset = (180 * info.width + 180) * info.channels;
+
+      return [...data.subarray(offset, offset + info.channels)];
+    };
+
+    await expect(centerPixel('at-9')).resolves.toEqual([255, 255, 255, 255]);
+    await expect(centerPixel('gr-a')).resolves.toEqual([255, 204, 51, 255]);
+  });
+
+  test('crops transparent padding from Portuguese raster sources', async () => {
+    for (const code of ['pt-06', 'pt-07']) {
+      const { data, info } = await sharp(path.resolve('flags', `${code}.svg`))
+        .resize(360, 360)
+        .ensureAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const alpha = data[(60 * info.width + 180) * info.channels + 3];
+
+      expect(alpha, `${code} should fill the normalized flag area`).toBe(255);
+    }
+  });
+
   test('exports representative names', () => {
     expect(FLAGS.ac).toBe('Ascension Island');
+    expect(FLAGS['ar-a']).toBe('Salta');
+    expect(FLAGS['ar-z']).toBe('Santa Cruz');
+    expect(FLAGS['at-1']).toBe('Burgenland');
+    expect(FLAGS['at-9']).toBe('Vienna');
     expect(FLAGS['au-act']).toBe('Australian Capital Territory');
     expect(FLAGS['au-wa']).toBe('Western Australia');
+    expect(FLAGS['br-ac']).toBe('Acre');
+    expect(FLAGS['br-df']).toBe('Federal District');
+    expect(FLAGS['br-sp']).toBe('São Paulo');
+    expect(FLAGS['br-to']).toBe('Tocantins');
     expect(FLAGS['ca-ab']).toBe('Alberta');
     expect(FLAGS['ca-on']).toBe('Ontario');
     expect(FLAGS['ca-yt']).toBe('Yukon');
+    expect(FLAGS['ch-ag']).toBe('Aargau');
+    expect(FLAGS['ch-ge']).toBe('Genève');
+    expect(FLAGS['ch-gr']).toBe('Graubünden');
+    expect(FLAGS['ch-zh']).toBe('Zürich');
+    expect(FLAGS['co-ama']).toBe('Amazonas');
+    expect(FLAGS['co-vid']).toBe('Vichada');
     expect(FLAGS.cp).toBe('Clipperton Island');
     expect(FLAGS.cq).toBe('Sark');
     expect(FLAGS.cz).toBe('Czechia');
@@ -58,11 +130,25 @@ describe('flag data', () => {
     expect(FLAGS['gb-nir']).toBe('Northern Ireland');
     expect(FLAGS['gb-sct']).toBe('Scotland');
     expect(FLAGS['gb-wls']).toBe('Wales');
+    expect(FLAGS['gr-69']).toBe('Mount Athos');
+    expect(FLAGS['gr-c']).toBe('Western Macedonia');
     expect(FLAGS.ic).toBe('Canary Islands');
     expect(FLAGS['it-21']).toBe('Piedmont');
     expect(FLAGS['it-32']).toBe('Trentino-South Tyrol');
     expect(FLAGS['it-82']).toBe('Sicily');
     expect(FLAGS['it-88']).toBe('Sardinia');
+    expect(FLAGS['jp-01']).toBe('Hokkaido');
+    expect(FLAGS['jp-13']).toBe('Tokyo');
+    expect(FLAGS['jp-26']).toBe('Kyoto');
+    expect(FLAGS['jp-47']).toBe('Okinawa');
+    expect(FLAGS['mx-agu']).toBe('Aguascalientes');
+    expect(FLAGS['mx-cmx']).toBe('Mexico City');
+    expect(FLAGS['mx-mex']).toBe('State of Mexico');
+    expect(FLAGS['mx-zac']).toBe('Zacatecas');
+    expect(FLAGS['pl-02']).toBe('Lower Silesia');
+    expect(FLAGS['pl-32']).toBe('West Pomerania');
+    expect(FLAGS['pt-01']).toBe('Aveiro');
+    expect(FLAGS['pt-30']).toBe('Madeira');
     expect(FLAGS.ta).toBe('Tristan da Cunha');
     expect(FLAGS.eu).toBe('European Union');
     expect(FLAGS.un).toBe('United Nations');

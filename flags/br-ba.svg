@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 1500 1000" preserveAspectRatio="none">
+      <title>Bandeira da Bahia</title>
+      <rect width="1500" height="1000"/>
+      <path fill="#c8140a" d="M0 250h1500v250H500zm0 500h1500v250H0z"/>
+      <rect fill="#0a14c8" width="500" height="500"/>
+      <path d="M54,410L446,410 250,70 54,410z"/>
+    </svg>
+  </g>
+</svg>
