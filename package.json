@@ -1,6 +1,6 @@
 {
   "name": "flag-resizer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Generate typed, optimized PNG and WebP flag assets from bundled SVG artwork.",
   "keywords": [
