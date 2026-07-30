@@ -13,8 +13,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(550);
-    expect(Object.keys(FLAGS)).toHaveLength(550);
+    expect(COUNTRY_CODES).toHaveLength(627);
+    expect(Object.keys(FLAGS)).toHaveLength(627);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -80,8 +80,23 @@ describe('flag data', () => {
     await expect(centerPixel('gr-a')).resolves.toEqual([255, 204, 51, 255]);
   });
 
+  test('crops transparent padding from Portuguese raster sources', async () => {
+    for (const code of ['pt-06', 'pt-07']) {
+      const { data, info } = await sharp(path.resolve('flags', `${code}.svg`))
+        .resize(360, 360)
+        .ensureAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const alpha = data[(60 * info.width + 180) * info.channels + 3];
+
+      expect(alpha, `${code} should fill the normalized flag area`).toBe(255);
+    }
+  });
+
   test('exports representative names', () => {
     expect(FLAGS.ac).toBe('Ascension Island');
+    expect(FLAGS['ar-a']).toBe('Salta');
+    expect(FLAGS['ar-z']).toBe('Santa Cruz');
     expect(FLAGS['at-1']).toBe('Burgenland');
     expect(FLAGS['at-9']).toBe('Vienna');
     expect(FLAGS['au-act']).toBe('Australian Capital Territory');
@@ -97,6 +112,8 @@ describe('flag data', () => {
     expect(FLAGS['ch-ge']).toBe('Genève');
     expect(FLAGS['ch-gr']).toBe('Graubünden');
     expect(FLAGS['ch-zh']).toBe('Zürich');
+    expect(FLAGS['co-ama']).toBe('Amazonas');
+    expect(FLAGS['co-vid']).toBe('Vichada');
     expect(FLAGS.cp).toBe('Clipperton Island');
     expect(FLAGS.cq).toBe('Sark');
     expect(FLAGS.cz).toBe('Czechia');
@@ -130,6 +147,8 @@ describe('flag data', () => {
     expect(FLAGS['mx-zac']).toBe('Zacatecas');
     expect(FLAGS['pl-02']).toBe('Lower Silesia');
     expect(FLAGS['pl-32']).toBe('West Pomerania');
+    expect(FLAGS['pt-01']).toBe('Aveiro');
+    expect(FLAGS['pt-30']).toBe('Madeira');
     expect(FLAGS.ta).toBe('Tristan da Cunha');
     expect(FLAGS.eu).toBe('European Union');
     expect(FLAGS.un).toBe('United Nations');

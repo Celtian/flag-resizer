@@ -20,7 +20,7 @@ a deterministic TypeScript manifest alongside the assets.
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled flags**              | Includes 550 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
+| 🏳️ **Bundled flags**              | Includes 627 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
@@ -85,12 +85,14 @@ export default defineConfig({
 Filter values are lowercase flag or country codes, not language codes. They can be exact codes or
 patterns using `*` as a wildcard. For example, use `cz` for the Czech flag, `gb` for the British
 flag, or `us-*` for all 50 U.S. subdivision flags. The `us-*` pattern does not include the national
-`us` flag; add `us` separately if needed. Likewise, `at-*` selects Austrian states, `ca-*` selects
-Canadian subdivisions, `au-*` selects Australian subdivisions, `br-*` selects Brazilian federative
-units, `ch-*` selects Swiss cantons, `de-*` selects German states, `es-*` selects Spanish autonomous
-communities and cities, `gr-*` selects the four Greek subdivisions with bundled flags, `it-*`
-selects Italian regions, `jp-*` selects Japanese prefectures, `mx-*` selects Mexican federal
-entities, `pl-*` selects Polish voivodeships, and `*` selects every bundled flag.
+`us` flag; add `us` separately if needed. Likewise, `ar-*` selects Argentinian subdivisions,
+`at-*` selects Austrian states, `ca-*` selects Canadian subdivisions, `au-*` selects Australian
+subdivisions, `br-*` selects Brazilian federative units, `ch-*` selects Swiss cantons, `co-*`
+selects Colombian subdivisions, `de-*` selects German states, `es-*` selects Spanish autonomous
+communities and cities, `gr-*` selects the four Greek subdivision codes with bundled artwork,
+`it-*` selects Italian regions, `jp-*` selects Japanese prefectures, `mx-*` selects Mexican federal
+entities, `pl-*` selects Polish voivodeships, `pt-*` selects Portuguese subdivisions, and `*`
+selects every bundled flag.
 
 Subdivision codes can also be selected individually: `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
 for the United Kingdom; `us-ca` for California; `ca-on` for Ontario; or `au-nsw` for New South
@@ -105,25 +107,30 @@ The 50 U.S. state assets come from [FlagCDN](https://flagcdn.com/), whose flag a
 [Flagpedia's terms](https://flagpedia.net/terms). The source artwork is normalized to the same
 rounded 36×36 canvas as the bundled Twemoji flags.
 
-The 9 Austrian, 13 Canadian, 8 Australian, 27 Brazilian, 26 Swiss, 16 German, 4 Greek, 19 Spanish,
-20 Italian, 47 Japanese, 32 Mexican, and 16 Polish subdivision sets primarily come from the
-MIT-licensed
+The 24 Argentinian, 9 Austrian, 13 Canadian, 8 Australian, 27 Brazilian, 26 Swiss, 33 Colombian,
+16 German, 4 Greek, 19 Spanish, 20 Italian, 47 Japanese, 32 Mexican, 16 Polish, and 20 Portuguese
+subdivision sets primarily come from the MIT-licensed
 [iso3166-flags](https://github.com/amckenna41/iso3166-flags) dataset and use current ISO 3166-2
 codes. The `ch-ar` asset instead uses the square, public-domain flag artwork from
 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Flag_of_Canton_of_Appenzell_Ausserrhoden.svg);
-this avoids stretching the shield-shaped upstream artwork. Spain's set covers its 17 autonomous
-communities and 2 autonomous cities, not its 50 provinces; Italy's set covers its regions, not its
-provinces or metropolitan cities; Brazil's set covers its 26 states and Federal District;
-Switzerland's set covers its 26 cantons; Japan's set covers its 47 prefectures; and Mexico's set
-covers its 31 states and Mexico City. Greece has 14 current ISO 3166-2 subdivisions, but the source
-provides official flags only for Mount Athos and the three Macedonian regions (`gr-69`, `gr-a`,
-`gr-b`, and `gr-c`); its other 10 administrative regions are therefore not bundled. The three
-Macedonian codes intentionally share the same flag artwork. Some Mexican subdivision designs are
-representative de facto banners rather than legally adopted state flags.
-The Mexico City source is raster-backed because the ISO dataset provides that asset only as a PNG;
-it is embedded in the normalized SVG wrapper. The non-rectangular official silhouettes of
-`pl-28` and `pl-30` intentionally retain transparency around their fly edges. All source artwork is
-normalized to the rounded 36×36 canvas.
+this avoids stretching the shield-shaped upstream artwork. The `pt-02` asset likewise uses a
+higher-detail, public-domain vector from
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Flag_of_Beja.svg), while `pt-12` and
+`pt-17` use higher-resolution Commons artwork under CC BY-SA 3.0. Spain's set covers its 17
+autonomous communities and 2 autonomous cities, not its 50 provinces; Italy's set covers its
+regions, not its provinces or metropolitan cities; Argentina's set covers its 23 provinces and
+autonomous city; Brazil's set covers its 26 states and Federal District; Colombia's set covers its
+32 departments and capital district; Switzerland's set covers its 26 cantons; Japan's set covers
+its 47 prefectures; Mexico's set covers its 31 states and Mexico City; and Portugal's set covers its
+18 districts and 2 autonomous regions. Greece has 14 current ISO 3166-2 subdivisions, but the
+source provides Mount Athos artwork and reuses the unofficial Greek Macedonia flag for `gr-a`,
+`gr-b`, and `gr-c`; the other 10 administrative regions are not bundled. Some Mexican subdivision
+designs are representative de facto banners rather than legally adopted state flags.
+The Mexico City source and 16 Portuguese district assets are raster-backed. The `pt-12` and `pt-17`
+assets use the higher-resolution Commons sources described above; the remaining raster-backed
+Portuguese assets use source images from the ISO dataset. They are embedded in normalized SVG
+wrappers. The non-rectangular official silhouettes of `pl-28` and `pl-30` intentionally retain
+transparency around their fly edges. All source artwork is normalized to the rounded 36×36 canvas.
 
 All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
 configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.

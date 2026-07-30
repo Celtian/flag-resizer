@@ -33,11 +33,13 @@ describe('generate', () => {
         filter: {
           type: 'whitelist',
           values: [
+            'ar-c',
             'at-9',
             'au-act',
             'br-sp',
             'ca-on',
             'ch-zh',
+            'co-dc',
             'cz',
             'de-by',
             'es-cn',
@@ -47,6 +49,7 @@ describe('generate', () => {
             'jp-13',
             'mx-cmx',
             'pl-30',
+            'pt-20',
             'us-ca',
           ],
         },
@@ -66,8 +69,8 @@ describe('generate', () => {
     const first = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(first.profiles[0]).toMatchObject({
       name: 'default',
-      countries: 15,
-      images: 60,
+      countries: 18,
+      images: 72,
       removed: 0,
     });
 
@@ -75,11 +78,13 @@ describe('generate', () => {
       for (const size of ['20x15', '40x30'] as const) {
         const [width, height] = size.split('x').map(Number);
         for (const code of [
+          'ar-c',
           'at-9',
           'au-act',
           'br-sp',
           'ca-on',
           'ch-zh',
+          'co-dc',
           'cz',
           'de-by',
           'es-cn',
@@ -89,6 +94,7 @@ describe('generate', () => {
           'jp-13',
           'mx-cmx',
           'pl-30',
+          'pt-20',
           'us-ca',
         ]) {
           const metadata = await sharp(
@@ -103,9 +109,11 @@ describe('generate', () => {
       await expect(attribution).resolves.toContain('flag-icons');
       await expect(attribution).resolves.toContain('flagcdn.com');
       await expect(attribution).resolves.toContain('iso3166-flags');
+      await expect(attribution).resolves.toContain('File:PTG.png');
 
       const license = readFile(path.join(cwd, 'assets', format, 'LICENSE-GRAPHICS'), 'utf8');
       await expect(license).resolves.toContain('CC-BY-4.0');
+      await expect(license).resolves.toContain('CC BY-SA 3.0');
       await expect(license).resolves.toContain('The MIT License');
       await expect(license).resolves.toContain('public domain');
       await expect(license).resolves.toContain('mx-*.svg');
@@ -113,11 +121,13 @@ describe('generate', () => {
 
     const generated = await readFile(path.join(cwd, 'generated/flags.ts'), 'utf8');
     expect(generated).toContain('export const FLAGS');
+    expect(generated).toContain('"ar-c": "Autonomous City of Buenos Aires"');
     expect(generated).toContain('"at-9": "Vienna"');
     expect(generated).toContain('"au-act": "Australian Capital Territory"');
     expect(generated).toContain('"br-sp": "São Paulo"');
     expect(generated).toContain('"ca-on": "Ontario"');
     expect(generated).toContain('"ch-zh": "Zürich"');
+    expect(generated).toContain('"co-dc": "Capital District of Bogotá"');
     expect(generated).toContain('"de-by": "Bavaria"');
     expect(generated).toContain('"es-cn": "Canary Islands"');
     expect(generated).toContain('"gb-nir": "Northern Ireland"');
@@ -126,6 +136,7 @@ describe('generate', () => {
     expect(generated).toContain('"jp-13": "Tokyo"');
     expect(generated).toContain('"mx-cmx": "Mexico City"');
     expect(generated).toContain('"pl-30": "Greater Poland"');
+    expect(generated).toContain('"pt-20": "Azores"');
     expect(generated).toContain('"us-ca": "California"');
     expect(generated).toContain('getFlagPath');
     expect(generated).not.toContain('us:');
@@ -133,13 +144,13 @@ describe('generate', () => {
     const manifest = JSON.parse(
       await readFile(path.join(cwd, '.flag-resizer/manifest.json'), 'utf8'),
     ) as { profiles: { default: { files: unknown[] } } };
-    expect(manifest.profiles.default.files).toHaveLength(65);
+    expect(manifest.profiles.default.files).toHaveLength(77);
 
     const second = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(second.profiles[0]).toMatchObject({
       created: 0,
       updated: 0,
-      unchanged: 65,
+      unchanged: 77,
       removed: 0,
     });
   });
