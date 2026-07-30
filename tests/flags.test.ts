@@ -13,8 +13,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(448);
-    expect(Object.keys(FLAGS)).toHaveLength(448);
+    expect(COUNTRY_CODES).toHaveLength(521);
+    expect(Object.keys(FLAGS)).toHaveLength(521);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -46,6 +46,10 @@ describe('flag data', () => {
     expect(FLAGS['ca-ab']).toBe('Alberta');
     expect(FLAGS['ca-on']).toBe('Ontario');
     expect(FLAGS['ca-yt']).toBe('Yukon');
+    expect(FLAGS['ch-ag']).toBe('Aargau');
+    expect(FLAGS['ch-ge']).toBe('Genève');
+    expect(FLAGS['ch-gr']).toBe('Graubünden');
+    expect(FLAGS['ch-zh']).toBe('Zürich');
     expect(FLAGS.cp).toBe('Clipperton Island');
     expect(FLAGS.cq).toBe('Sark');
     expect(FLAGS.cz).toBe('Czechia');
@@ -67,6 +71,10 @@ describe('flag data', () => {
     expect(FLAGS['it-32']).toBe('Trentino-South Tyrol');
     expect(FLAGS['it-82']).toBe('Sicily');
     expect(FLAGS['it-88']).toBe('Sardinia');
+    expect(FLAGS['jp-01']).toBe('Hokkaido');
+    expect(FLAGS['jp-13']).toBe('Tokyo');
+    expect(FLAGS['jp-26']).toBe('Kyoto');
+    expect(FLAGS['jp-47']).toBe('Okinawa');
     expect(FLAGS['mx-agu']).toBe('Aguascalientes');
     expect(FLAGS['mx-cmx']).toBe('Mexico City');
     expect(FLAGS['mx-mex']).toBe('State of Mexico');

@@ -36,11 +36,13 @@ describe('generate', () => {
             'au-act',
             'br-sp',
             'ca-on',
+            'ch-zh',
             'cz',
             'de-by',
             'es-cn',
             'gb-nir',
             'it-82',
+            'jp-13',
             'mx-cmx',
             'us-ca',
           ],
@@ -61,8 +63,8 @@ describe('generate', () => {
     const first = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(first.profiles[0]).toMatchObject({
       name: 'default',
-      countries: 10,
-      images: 40,
+      countries: 12,
+      images: 48,
       removed: 0,
     });
 
@@ -73,11 +75,13 @@ describe('generate', () => {
           'au-act',
           'br-sp',
           'ca-on',
+          'ch-zh',
           'cz',
           'de-by',
           'es-cn',
           'gb-nir',
           'it-82',
+          'jp-13',
           'mx-cmx',
           'us-ca',
         ]) {
@@ -106,10 +110,12 @@ describe('generate', () => {
     expect(generated).toContain('"au-act": "Australian Capital Territory"');
     expect(generated).toContain('"br-sp": "São Paulo"');
     expect(generated).toContain('"ca-on": "Ontario"');
+    expect(generated).toContain('"ch-zh": "Zürich"');
     expect(generated).toContain('"de-by": "Bavaria"');
     expect(generated).toContain('"es-cn": "Canary Islands"');
     expect(generated).toContain('"gb-nir": "Northern Ireland"');
     expect(generated).toContain('"it-82": "Sicily"');
+    expect(generated).toContain('"jp-13": "Tokyo"');
     expect(generated).toContain('"mx-cmx": "Mexico City"');
     expect(generated).toContain('"us-ca": "California"');
     expect(generated).toContain('getFlagPath');
@@ -118,13 +124,13 @@ describe('generate', () => {
     const manifest = JSON.parse(
       await readFile(path.join(cwd, '.flag-resizer/manifest.json'), 'utf8'),
     ) as { profiles: { default: { files: unknown[] } } };
-    expect(manifest.profiles.default.files).toHaveLength(45);
+    expect(manifest.profiles.default.files).toHaveLength(53);
 
     const second = await generate({ cwd, config: testConfig, concurrency: 2 });
     expect(second.profiles[0]).toMatchObject({
       created: 0,
       updated: 0,
-      unchanged: 45,
+      unchanged: 53,
       removed: 0,
     });
   });

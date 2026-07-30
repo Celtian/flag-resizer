@@ -20,7 +20,7 @@ a deterministic TypeScript manifest alongside the assets.
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled flags**              | Includes 448 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
+| 🏳️ **Bundled flags**              | Includes 521 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
@@ -86,9 +86,10 @@ Filter values are lowercase flag or country codes, not language codes. They can 
 patterns using `*` as a wildcard. For example, use `cz` for the Czech flag, `gb` for the British
 flag, or `us-*` for all 50 U.S. subdivision flags. The `us-*` pattern does not include the national
 `us` flag; add `us` separately if needed. Likewise, `ca-*` selects Canadian subdivisions, `au-*`
-selects Australian subdivisions, `br-*` selects Brazilian federative units, `de-*` selects German
-states, `es-*` selects Spanish autonomous communities and cities, `it-*` selects Italian regions,
-`mx-*` selects Mexican federal entities, and `*` selects every bundled flag.
+selects Australian subdivisions, `br-*` selects Brazilian federative units, `ch-*` selects Swiss
+cantons, `de-*` selects German states, `es-*` selects Spanish autonomous communities and cities,
+`it-*` selects Italian regions, `jp-*` selects Japanese prefectures, `mx-*` selects Mexican federal
+entities, and `*` selects every bundled flag.
 
 Subdivision codes can also be selected individually: `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
 for the United Kingdom; `us-ca` for California; `ca-on` for Ontario; or `au-nsw` for New South
@@ -103,16 +104,20 @@ The 50 U.S. state assets come from [FlagCDN](https://flagcdn.com/), whose flag a
 [Flagpedia's terms](https://flagpedia.net/terms). The source artwork is normalized to the same
 rounded 36×36 canvas as the bundled Twemoji flags.
 
-The 13 Canadian, 8 Australian, 27 Brazilian, 16 German, 19 Spanish, 20 Italian, and 32 Mexican
-subdivision assets come from the MIT-licensed
+The 13 Canadian, 8 Australian, 27 Brazilian, 26 Swiss, 16 German, 19 Spanish, 20 Italian, 47
+Japanese, and 32 Mexican subdivision sets primarily come from the MIT-licensed
 [iso3166-flags](https://github.com/amckenna41/iso3166-flags) dataset and use current ISO 3166-2
-codes. Spain's set covers its 17 autonomous communities and 2 autonomous cities, not its 50
+codes. The `ch-ar` asset instead uses the square, public-domain flag artwork from
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Flag_of_Canton_of_Appenzell_Ausserrhoden.svg);
+this avoids stretching the shield-shaped upstream artwork. Spain's set covers its 17 autonomous
+communities and 2 autonomous cities, not its 50
 provinces; Italy's set covers its regions, not its provinces or metropolitan cities; Brazil's set
-covers its 26 states and Federal District; and Mexico's set covers its 31 states and Mexico City.
-Some Mexican subdivision designs are representative de facto banners rather than legally adopted
-state flags. The Mexico City source is raster-backed because the ISO dataset provides that asset
-only as a PNG; it is embedded in the normalized SVG wrapper. All source artwork is normalized to
-the rounded 36×36 canvas.
+covers its 26 states and Federal District; Switzerland's set covers its 26 cantons; Japan's set
+covers its 47 prefectures; and Mexico's set covers its 31 states and Mexico City. Some Mexican
+subdivision designs are representative de facto banners rather than legally adopted state flags.
+The Mexico City source is raster-backed because the ISO dataset provides that asset only as a PNG;
+it is embedded in the normalized SVG wrapper. All source artwork is normalized to the rounded 36×36
+canvas.
 
 All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
 configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.

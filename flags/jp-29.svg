@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <desc>Flag of Nara Prefecture</desc>
+        <rect width="1200" height="800" fill="#ffffff" />
+        <circle cx="570" cy="400" r="220" fill="#5b1c1f" />
+        <circle cx="430" cy="400" r="76" fill="#FFFFFF" />
+        <line x1="430" y1="400" x2="850" y2="400" stroke="#5b1c1f" stroke-width="80" />
+        <line x1="340" y1="400" x2="365" y2="400" stroke="#ffffff" stroke-width="10" />
+    </svg>
+  </g>
+</svg>
