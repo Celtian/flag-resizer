@@ -13,8 +13,8 @@ describe('flag data', () => {
       .map((file) => file.replace(/\.svg$/u, ''))
       .sort();
 
-    expect(COUNTRY_CODES).toHaveLength(389);
-    expect(Object.keys(FLAGS)).toHaveLength(389);
+    expect(COUNTRY_CODES).toHaveLength(448);
+    expect(Object.keys(FLAGS)).toHaveLength(448);
     expect(files).toEqual([...COUNTRY_CODES].sort());
   });
 
@@ -39,6 +39,10 @@ describe('flag data', () => {
     expect(FLAGS.ac).toBe('Ascension Island');
     expect(FLAGS['au-act']).toBe('Australian Capital Territory');
     expect(FLAGS['au-wa']).toBe('Western Australia');
+    expect(FLAGS['br-ac']).toBe('Acre');
+    expect(FLAGS['br-df']).toBe('Federal District');
+    expect(FLAGS['br-sp']).toBe('São Paulo');
+    expect(FLAGS['br-to']).toBe('Tocantins');
     expect(FLAGS['ca-ab']).toBe('Alberta');
     expect(FLAGS['ca-on']).toBe('Ontario');
     expect(FLAGS['ca-yt']).toBe('Yukon');
@@ -63,6 +67,10 @@ describe('flag data', () => {
     expect(FLAGS['it-32']).toBe('Trentino-South Tyrol');
     expect(FLAGS['it-82']).toBe('Sicily');
     expect(FLAGS['it-88']).toBe('Sardinia');
+    expect(FLAGS['mx-agu']).toBe('Aguascalientes');
+    expect(FLAGS['mx-cmx']).toBe('Mexico City');
+    expect(FLAGS['mx-mex']).toBe('State of Mexico');
+    expect(FLAGS['mx-zac']).toBe('Zacatecas');
     expect(FLAGS.ta).toBe('Tristan da Cunha');
     expect(FLAGS.eu).toBe('European Union');
     expect(FLAGS.un).toBe('United Nations');

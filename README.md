@@ -20,7 +20,7 @@ a deterministic TypeScript manifest alongside the assets.
 
 | Feature                           | Details                                                                                        |
 | --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| 🏳️ **Bundled flags**              | Includes 389 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
+| 🏳️ **Bundled flags**              | Includes 448 regional and subdivision flags across Twemoji, FlagCDN, and ISO 3166-2 sources.   |
 | 🖼️ **Optimized image sets**       | Generates PNG, WebP, or both at every configured size and quality.                             |
 | 🧩 **Typed application paths**    | Produces country, size, format, dimension, and public-path constants with a typed path helper. |
 | 🎯 **Reusable profiles**          | Supports independent country filters, dimensions, formats, and output locations.               |
@@ -86,8 +86,9 @@ Filter values are lowercase flag or country codes, not language codes. They can 
 patterns using `*` as a wildcard. For example, use `cz` for the Czech flag, `gb` for the British
 flag, or `us-*` for all 50 U.S. subdivision flags. The `us-*` pattern does not include the national
 `us` flag; add `us` separately if needed. Likewise, `ca-*` selects Canadian subdivisions, `au-*`
-selects Australian subdivisions, `de-*` selects German states, `es-*` selects Spanish autonomous
-communities and cities, `it-*` selects Italian regions, and `*` selects every bundled flag.
+selects Australian subdivisions, `br-*` selects Brazilian federative units, `de-*` selects German
+states, `es-*` selects Spanish autonomous communities and cities, `it-*` selects Italian regions,
+`mx-*` selects Mexican federal entities, and `*` selects every bundled flag.
 
 Subdivision codes can also be selected individually: `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
 for the United Kingdom; `us-ca` for California; `ca-on` for Ontario; or `au-nsw` for New South
@@ -102,11 +103,16 @@ The 50 U.S. state assets come from [FlagCDN](https://flagcdn.com/), whose flag a
 [Flagpedia's terms](https://flagpedia.net/terms). The source artwork is normalized to the same
 rounded 36×36 canvas as the bundled Twemoji flags.
 
-The 13 Canadian, 8 Australian, 16 German, 19 Spanish, and 20 Italian subdivision assets come from
-the MIT-licensed [iso3166-flags](https://github.com/amckenna41/iso3166-flags) dataset and use
-current ISO 3166-2 codes. Spain's set covers its 17 autonomous communities and 2 autonomous cities,
-not its 50 provinces; Italy's set covers its regions, not its provinces or metropolitan cities.
-Their source artwork is also normalized to the rounded 36×36 canvas.
+The 13 Canadian, 8 Australian, 27 Brazilian, 16 German, 19 Spanish, 20 Italian, and 32 Mexican
+subdivision assets come from the MIT-licensed
+[iso3166-flags](https://github.com/amckenna41/iso3166-flags) dataset and use current ISO 3166-2
+codes. Spain's set covers its 17 autonomous communities and 2 autonomous cities, not its 50
+provinces; Italy's set covers its regions, not its provinces or metropolitan cities; Brazil's set
+covers its 26 states and Federal District; and Mexico's set covers its 31 states and Mexico City.
+Some Mexican subdivision designs are representative de facto banners rather than legally adopted
+state flags. The Mexico City source is raster-backed because the ISO dataset provides that asset
+only as a PNG; it is embedded in the normalized SVG wrapper. All source artwork is normalized to
+the rounded 36×36 canvas.
 
 All sizes in one profile must use the same aspect ratio. Output paths are resolved relative to the
 configuration file. A `publicPath` can be a root-relative path or an absolute CDN URL.
@@ -353,7 +359,7 @@ Copyright &copy; 2026 [Dominik Hladík](https://github.com/Celtian).
 The package code is licensed under the [MIT License](LICENSE).
 
 The bundled graphics use source-specific terms: Twemoji is licensed under CC-BY-4.0; the Northern
-Ireland, Canadian, Australian, German, Spanish, and Italian subdivision assets are MIT-licensed;
-and the FlagCDN U.S. state artwork is public domain. Generated asset roots include attribution and
-license notices. Keep the required notices when redistributing the graphics. See
-[ATTRIBUTION.txt](ATTRIBUTION.txt) and [LICENSE-GRAPHICS](LICENSE-GRAPHICS).
+Ireland and ISO-sourced subdivision assets are MIT-licensed; and the FlagCDN U.S. state artwork is
+public domain. Generated asset roots include attribution and license notices. Keep the required
+notices when redistributing the graphics. See [ATTRIBUTION.txt](ATTRIBUTION.txt) and
+[LICENSE-GRAPHICS](LICENSE-GRAPHICS).

@@ -29,6 +29,7 @@ test('public API preserves literal configuration types', () => {
   expectTypeOf(config.default.formats[0]).toEqualTypeOf<'png'>();
   expectTypeOf(generate).returns.resolves.toEqualTypeOf<GenerationResult>();
   expectTypeOf<'au-act'>().toExtend<CountryCode>();
+  expectTypeOf<'br-sp'>().toExtend<CountryCode>();
   expectTypeOf<'ca-on'>().toExtend<CountryCode>();
   expectTypeOf<'cq'>().toExtend<CountryCode>();
   expectTypeOf<'cz'>().toExtend<CountryCode>();
@@ -38,7 +39,10 @@ test('public API preserves literal configuration types', () => {
   expectTypeOf<'gb-eng'>().toExtend<CountryCode>();
   expectTypeOf<'gb-nir'>().toExtend<CountryCode>();
   expectTypeOf<'it-82'>().toExtend<CountryCode>();
+  expectTypeOf<'mx-cmx'>().toExtend<CountryCode>();
   expectTypeOf<'us-ca'>().toExtend<CountryCode>();
+  expectTypeOf<'br-*'>().toExtend<FlagFilterPattern>();
+  expectTypeOf<'mx-*'>().toExtend<FlagFilterValue>();
   expectTypeOf<'us-*'>().toExtend<FlagFilterPattern>();
   expectTypeOf<'us-*'>().toExtend<FlagFilterValue>();
   expectTypeOf<'webp'>().toExtend<FlagFormat>();

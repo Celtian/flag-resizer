@@ -21,8 +21,10 @@ Flagpedia identifies its flag images as public domain and available for use
 without restriction:
 https://flagpedia.net/terms
 
-Canadian, Australian, German, Spanish, and Italian subdivision flag graphics
-(`ca-*.svg`, `au-*.svg`, `de-*.svg`, `es-*.svg`, `it-*.svg`)
+Canadian, Australian, Brazilian, German, Mexican, Spanish, and Italian
+subdivision flag graphics
+(`ca-*.svg`, `au-*.svg`, `br-*.svg`, `de-*.svg`, `mx-*.svg`, `es-*.svg`,
+`it-*.svg`)
 
 Source:
 https://github.com/amckenna41/iso3166-flags
