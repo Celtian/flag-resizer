@@ -94,6 +94,20 @@ communities and cities, `gr-*` selects the four Greek subdivision codes with bun
 entities, `pl-*` selects Polish voivodeships, `pt-*` selects Portuguese subdivisions, and `*`
 selects every bundled flag.
 
+To generate only national and territorial flags, blacklist `*-*`:
+
+```ts
+filter: {
+  type: 'blacklist',
+  values: ['*-*'],
+}
+```
+
+Every bundled subdivision code contains a hyphen, so `*-*` matches all subdivisions without
+matching national or territorial codes such as `us`, `hk`, `mo`, or `ac`. Whitelisting `*-*`
+instead generates only subdivisions. Additional exact exclusions can be combined with the global
+pattern; for example, `values: ['*-*', 'cz']` excludes every subdivision and the Czech flag.
+
 Subdivision codes can also be selected individually: `gb-eng`, `gb-nir`, `gb-sct`, and `gb-wls`
 for the United Kingdom; `us-ca` for California; `ca-on` for Ontario; or `au-nsw` for New South
 Wales. Unknown codes, malformed patterns, and patterns that match no bundled flags fail validation.

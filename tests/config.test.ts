@@ -67,6 +67,22 @@ describe('configuration', () => {
     expect(blacklistedCountries.some((code) => code.startsWith('us-'))).toBe(false);
   });
 
+  test('can exclude every subdivision with the global wildcard pattern', async () => {
+    const resolved = await resolveConfiguration({
+      config: config(
+        profile({
+          filter: { type: 'blacklist', values: ['*-*'] },
+        }),
+      ),
+    });
+    const countries = resolved.profiles[0]?.countries ?? [];
+
+    expect(countries).toHaveLength(259);
+    expect(countries.every((code) => !code.includes('-'))).toBe(true);
+    expect(countries).toEqual(expect.arrayContaining(['us', 'hk', 'mo', 'ac']));
+    expect(countries).not.toEqual(expect.arrayContaining(['us-ca', 'pt-02', 'gb-eng']));
+  });
+
   test.each([
     ['format typo', config(profile({ formats: ['wepb' as never] })), 'Did you mean "webp"'],
     [
