@@ -55,6 +55,8 @@ const required = [
   'dist/index.d.ts',
   'dist/index.js',
   'flags/ac.svg',
+  'flags/at-1.svg',
+  'flags/at-9.svg',
   'flags/au-act.svg',
   'flags/au-wa.svg',
   'flags/br-ac.svg',
@@ -77,6 +79,8 @@ const required = [
   'flags/gb-nir.svg',
   'flags/gb-sct.svg',
   'flags/gb-wls.svg',
+  'flags/gr-69.svg',
+  'flags/gr-c.svg',
   'flags/ic.svg',
   'flags/it-21.svg',
   'flags/it-88.svg',
@@ -86,6 +90,8 @@ const required = [
   'flags/mx-agu.svg',
   'flags/mx-cmx.svg',
   'flags/mx-zac.svg',
+  'flags/pl-02.svg',
+  'flags/pl-32.svg',
   'flags/ta.svg',
   'flags/us-ak.svg',
   'flags/us-ca.svg',
@@ -98,12 +104,12 @@ for (const file of required) {
 }
 
 const flagCount = [...files].filter((file) =>
-  /^flags\/(?:[a-z]{2}|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|br-(?:ac|al|am|ap|ba|ce|df|es|go|ma|mg|ms|mt|pa|pb|pe|pi|pr|rj|rn|ro|rr|rs|sc|se|sp|to)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|ch-(?:ag|ai|ar|be|bl|bs|fr|ge|gl|gr|ju|lu|ne|nw|ow|sg|sh|so|sz|tg|ti|ur|vd|vs|zg|zh)|de-(?:bb|be|bw|by|hb|he|hh|mv|ni|nw|rp|sh|sl|sn|st|th)|es-(?:an|ar|as|cb|ce|cl|cm|cn|ct|ex|ga|ib|mc|md|ml|nc|pv|ri|vc)|gb-(?:eng|nir|sct|wls)|it-(?:21|23|25|32|34|36|42|45|52|55|57|62|65|67|72|75|77|78|82|88)|jp-(?:0[1-9]|[1-3]\d|4[0-7])|mx-(?:agu|bcn|bcs|cam|chh|chp|cmx|coa|col|dur|gro|gua|hid|jal|mex|mic|mor|nay|nle|oax|pue|que|roo|sin|slp|son|tab|tam|tla|ver|yuc|zac)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
+  /^flags\/(?:[a-z]{2}|at-[1-9]|au-(?:act|nsw|nt|qld|sa|tas|vic|wa)|br-(?:ac|al|am|ap|ba|ce|df|es|go|ma|mg|ms|mt|pa|pb|pe|pi|pr|rj|rn|ro|rr|rs|sc|se|sp|to)|ca-(?:ab|bc|mb|nb|nl|ns|nt|nu|on|pe|qc|sk|yt)|ch-(?:ag|ai|ar|be|bl|bs|fr|ge|gl|gr|ju|lu|ne|nw|ow|sg|sh|so|sz|tg|ti|ur|vd|vs|zg|zh)|de-(?:bb|be|bw|by|hb|he|hh|mv|ni|nw|rp|sh|sl|sn|st|th)|es-(?:an|ar|as|cb|ce|cl|cm|cn|ct|ex|ga|ib|mc|md|ml|nc|pv|ri|vc)|gb-(?:eng|nir|sct|wls)|gr-(?:69|a|b|c)|it-(?:21|23|25|32|34|36|42|45|52|55|57|62|65|67|72|75|77|78|82|88)|jp-(?:0[1-9]|[1-3]\d|4[0-7])|mx-(?:agu|bcn|bcs|cam|chh|chp|cmx|coa|col|dur|gro|gua|hid|jal|mex|mic|mor|nay|nle|oax|pue|que|roo|sin|slp|son|tab|tam|tla|ver|yuc|zac)|pl-(?:02|04|06|08|10|12|14|16|18|20|22|24|26|28|30|32)|us-(?:ak|al|ar|az|ca|co|ct|de|fl|ga|hi|ia|id|il|in|ks|ky|la|ma|md|me|mi|mn|mo|ms|mt|nc|nd|ne|nh|nj|nm|nv|ny|oh|ok|or|pa|ri|sc|sd|tn|tx|ut|va|vt|wa|wi|wv|wy))\.svg$/u.test(
     file,
   ),
 ).length;
-if (flagCount !== 521) {
-  throw new Error(`Published package contains ${flagCount} SVG flags; expected 521.`);
+if (flagCount !== 550) {
+  throw new Error(`Published package contains ${flagCount} SVG flags; expected 550.`);
 }
 
 console.log(`Package contents verified (${files.size} files, ${flagCount} flags).`);

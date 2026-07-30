@@ -59,24 +59,27 @@ implementation details.
 - Do not commit generated PNG or WebP files, `.flag-resizer` state, `dist`, or
   coverage output.
 - Treat `flags/*.svg` as source assets, not generated test output. The published
-  package must contain exactly the expected 521 SVG files: all 259 Twemoji
+  package must contain exactly the expected 550 SVG files: all 259 Twemoji
   regional flags, 4 UK subdivision flags, 50 FlagCDN-compatible U.S. state
-  flags, 13 Canadian subdivision flags, 8 Australian subdivision flags, 27
-  Brazilian subdivision flags, 26 Swiss canton flags, 16 German state flags, 19
-  Spanish autonomous community/city flags, 20 Italian region flags, 47 Japanese
-  prefecture flags, and 32 Mexican subdivision flags.
+  flags, 9 Austrian state flags, 13 Canadian subdivision flags, 8 Australian
+  subdivision flags, 27 Brazilian subdivision flags, 26 Swiss canton flags, 16
+  German state flags, 4 Greek subdivision flags, 19 Spanish autonomous
+  community/city flags, 20 Italian region flags, 47 Japanese prefecture flags,
+  32 Mexican subdivision flags, and 16 Polish voivodeship flags.
 - Changes to Twemoji artwork, `ATTRIBUTION.txt`, or `LICENSE-GRAPHICS` must
   preserve the CC-BY-4.0 license and required attribution.
 - The `gb-nir.svg` Ulster Banner comes from `flag-icons` under the MIT license;
   preserve its attribution and license notice.
 - The `us-*.svg` U.S. state flags come from FlagCDN's public-domain artwork;
   preserve the source and public-domain notices.
-- The `ca-*.svg`, `au-*.svg`, `br-*.svg`, `ch-*.svg` except `ch-ar.svg`,
-  `de-*.svg`, `es-*.svg`, `it-*.svg`, `jp-*.svg`, and `mx-*.svg` subdivision
-  flags come from `iso3166-flags` under the MIT license; preserve its
-  attribution and license notice. The public-domain `ch-ar.svg` source comes
-  from Wikimedia Commons. The `mx-cmx.svg` wrapper embeds the raster source
-  because upstream does not provide an SVG.
+- The `at-*.svg`, `ca-*.svg`, `au-*.svg`, `br-*.svg`, `ch-*.svg` except
+  `ch-ar.svg`, `de-*.svg`, `es-*.svg`, `gr-*.svg`, `it-*.svg`, `jp-*.svg`,
+  `mx-*.svg`, and `pl-*.svg` subdivision flags come from `iso3166-flags` under
+  the MIT license; preserve its attribution and license notice. The
+  public-domain `ch-ar.svg` source comes from Wikimedia Commons. The
+  `mx-cmx.svg` wrapper embeds the raster source because upstream does not
+  provide an SVG. The non-rectangular `pl-28.svg` and `pl-30.svg` silhouettes
+  intentionally retain transparent fly areas.
 - Generated asset directories must receive the attribution and graphics-license
   files expected by the generator tests.
 

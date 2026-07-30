@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+  <defs>
+    <clipPath id="flag-resizer-rounded-clip">
+      <rect width="36" height="26" y="5" rx="4"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flag-resizer-rounded-clip)">
+    <svg x="0" y="5" width="36" height="26" viewBox="0 0 960 600" preserveAspectRatio="none">
+      <defs
+           id="defs4" />
+        <g
+           id="layer1">
+          <rect
+             width="960"
+             height="200"
+             x="0"
+             y="0"
+             id="rect2383"
+             style="opacity:1;fill:#fff500;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <rect
+             width="960"
+             height="200"
+             x="0"
+             y="400"
+             id="rect2387"
+             style="opacity:1;fill:#00923f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <rect
+             width="960"
+             height="100"
+             x="0"
+             y="200"
+             id="rect2389"
+             style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <rect
+             width="960"
+             height="100"
+             x="0"
+             y="300"
+             id="rect2391"
+             style="opacity:1;fill:#da251d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        </g>
+    </svg>
+  </g>
+</svg>
