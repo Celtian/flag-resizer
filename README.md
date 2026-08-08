@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🏁 Flag Resizer
+<img src=".github/assets/flag-resizer-logo.png" alt="Flag Resizer logo" width="128">
+
+# Flag Resizer
 
 **Generate typed, optimized PNG and WebP flag assets from bundled SVG artwork.**
 
@@ -15,6 +17,11 @@
 `flag-resizer` converts its bundled flag artwork into application-ready image sets.
 Configure one or more profiles, choose the regions, dimensions, and formats you need, and generate
 a deterministic TypeScript manifest alongside the assets.
+
+Brand artwork is maintained and generated in
+[`Celtian/app-logos`](https://github.com/Celtian/app-logos) under the `flag-resizer` project. This
+repository checks in only the generated logo used by this README; update the canonical artwork
+there before refreshing it.
 
 ## ✨ Why use it?
 
