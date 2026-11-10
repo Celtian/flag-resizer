@@ -1,0 +1,25 @@
+package.json
+  h_aa1f579535d063 32,37,87-88,94-96,99-101,104
+  h_aa1f579535d063 92-93,97,102,105
+.github/workflows/main.yml
+  h_aa1f579535d063 39
+AGENTS.md
+  h_aa1f579535d063 9
+README.md
+  h_aa1f579535d063 347
+.github/workflows/pull-request.yml
+  h_aa1f579535d063 25
+bun.lock
+  h_aa1f579535d063 9-10,14-19,21-24,26-27,32-611
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "117e41ea4c3ec1574c5d3fdb224c2102831c5ada",
+  "prompts": {},
+  "humans": {
+    "h_aa1f579535d063": {
+      "author": "Celtian <dominik.hladik@seznam.cz>"
+    }
+  }
+}
