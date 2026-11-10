@@ -6,7 +6,7 @@ implementation details.
 
 ## Environment and commands
 
-- Use Node.js 24 from `.nvmrc` and Bun 1.3.14 from `package.json`.
+- Use Node.js 24 from `.nvmrc` and Bun 1.4.4 from `package.json`.
 - Use Bun for dependency management and scripts. Keep `bun.lock` in sync and do
   not introduce another package-manager lockfile.
 - Install the frozen dependency graph with `bun ci`.

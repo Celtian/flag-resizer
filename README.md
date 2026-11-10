@@ -344,7 +344,7 @@ The generator rejects:
 
 ## 🏗️ Development
 
-Use Node.js 24 from `.nvmrc` and Bun 1.3.14 from `package.json`:
+Use Node.js 24 from `.nvmrc` and Bun 1.4.4 from `package.json`:
 
 ```bash
 bun ci
